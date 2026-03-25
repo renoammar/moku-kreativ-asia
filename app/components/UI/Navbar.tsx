@@ -16,22 +16,32 @@ function Navbar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isReportingOpen, setIsReportingOpen] = useState(false)
+  const [isMobileReportingOpen, setIsMobileReportingOpen] = useState(false)
+  const [isMobileClosing, setIsMobileClosing] = useState(false)
+
+  const toggleMobileMenu = () => {
+    setIsMenuOpen((prev) => {
+      const next = !prev
+
+      if (!next) {
+        setIsMobileClosing(true)
+        setIsMobileReportingOpen(false)
+      }
+
+      return next
+    })
+  }
 
   return (
-    <motion.div
-      className={`w-[80%] overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen ? 'rounded-4xl' : 'rounded-full'}`}
+    <div
+      className={`w-[80%] overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen || isMobileClosing ? 'rounded-4xl' : 'rounded-full'}`}
     >
       <div className='h-16 px-6 flex items-center justify-between'>
         <img src="/images/moku_icon.png" alt="Moku Kreativ Asia" className='h-17.5 w-17.5' />
 
         <ul className='hidden md:flex items-center gap-8 text-slate-700 text-sm font-medium tracking-wide'>
           {navItems.map((item) => (
-            <li
-              key={item.label}
-              className='relative cursor-pointer'
-              onMouseEnter={() => item.children && setIsReportingOpen(true)}
-              onMouseLeave={() => item.children && setIsReportingOpen(false)}
-            >
+            <li key={item.label} className='relative cursor-pointer'>
               {item.children ? (
                 <>
                   <button
@@ -78,7 +88,7 @@ function Navbar() {
 
         <button
           type='button'
-          onClick={() => setIsMenuOpen((prev) => !prev)}
+          onClick={toggleMobileMenu}
           className='md:hidden flex items-center gap-2 text-slate-700 text-sm font-medium tracking-wide'
           aria-expanded={isMenuOpen}
           aria-controls='mobile-navbar-menu'
@@ -88,28 +98,65 @@ function Navbar() {
         </button>
       </div>
 
-      <AnimatePresence initial={false}>
-        {isMenuOpen && (
-          <motion.ul
-            id='mobile-navbar-menu'
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className='md:hidden px-5 pb-3'
+      <motion.ul
+        id='mobile-navbar-menu'
+        initial={false}
+        animate={{
+          height: isMenuOpen ? 'auto' : 0,
+          opacity: isMenuOpen ? 1 : 0,
+          paddingBottom: isMenuOpen ? 12 : 0,
+        }}
+        transition={{ duration: 0.28, ease: 'easeInOut' }}
+        onAnimationComplete={() => {
+          if (!isMenuOpen) {
+            setIsMobileClosing(false)
+          }
+        }}
+        className='md:hidden px-5 overflow-hidden'
+      >
+        {navItems.map((item, index) => (
+          <li
+            key={item.label}
+            className={`text-slate-800 ${index !== navItems.length - 1 ? 'border-b border-sky-100' : ''}`}
           >
-            {navItems.map((item, index) => (
-              <li
-                key={item.label}
-                className={`py-4 text-4xl text-slate-800 ${index !== navItems.length - 1 ? 'border-b border-sky-100' : ''}`}
-              >
-                {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
-              </li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
-    </motion.div>
+            {item.children ? (
+              <>
+                <button
+                  type='button'
+                  onClick={() => setIsMobileReportingOpen((prev) => !prev)}
+                  className='w-full py-4 flex items-center justify-between text-4xl'
+                  aria-expanded={isMobileReportingOpen}
+                  aria-controls='mobile-reporting-submenu'
+                >
+                  <span>{item.label.charAt(0) + item.label.slice(1).toLowerCase()}</span>
+                  <span className='text-sky-500 text-2xl leading-none'>{isMobileReportingOpen ? '−' : '+'}</span>
+                </button>
+
+                <motion.ul
+                  id='mobile-reporting-submenu'
+                  initial={false}
+                  animate={{
+                    height: isMobileReportingOpen ? 'auto' : 0,
+                    opacity: isMobileReportingOpen ? 1 : 0,
+                    marginBottom: isMobileReportingOpen ? 12 : 0,
+                  }}
+                  transition={{ duration: 0.22, ease: 'easeInOut' }}
+                  className='overflow-hidden pl-4'
+                >
+                  {item.children.map((child) => (
+                    <li key={child} className='py-2 text-xl text-slate-600'>
+                      {child}
+                    </li>
+                  ))}
+                </motion.ul>
+              </>
+            ) : (
+              <div className='py-4 text-4xl'>{item.label.charAt(0) + item.label.slice(1).toLowerCase()}</div>
+            )}
+          </li>
+        ))}
+      </motion.ul>
+    </div>
   )
 }
 
