@@ -1,11 +1,11 @@
 'use client'
 function InternationalLicenseBanner() {
   return (
-    <div className='mt-6 w-full bg-slate-100 px-5 py-4 md:px-6 md:py-4'>
+    <div className='mt-6 w-full bg-slate-100 px-5 py-4 md:px-6 md:py-4 rounded-sm'>
       <div className='grid items-center gap-5 md:grid-cols-[1fr_1.25fr] md:gap-8'>
         <div className='min-w-0'>
-          <h3 className='text-2xl font-bold text-blue-900 md:text-[20px] md:leading-[1.05]'>Standard Internasional</h3>
-          <p className='mt-2 max-w-sm text-sm leading-6 text-slate-600 md:text-[12px] md:leading-[1.35]'>
+          <h3 className='text-2xl font-bold text-blue-900 md:text-[24px] md:leading-[1.05]'>Standard Internasional</h3>
+          <p className='mt-2 max-w-sm text-sm leading-6 text-slate-600 md:text-[16px] md:leading-[1.35]'>
             Kami telah Memiliki Lisensi Standard Internasional dari AA1000
           </p>
           <a
