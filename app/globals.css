@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 @import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+
 /* DELETE this block in globals.css */
 /* @media (prefers-color-scheme: dark) {
   :root {

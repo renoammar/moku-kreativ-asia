@@ -19,8 +19,8 @@ function HomeHero() {
 
       <div className='relative z-10 flex h-full items-center justify-center px-4'>
         <div className='mx-auto w-full max-w-6xl'>
-          <h1 className='text-3xl font-bold text-white md:text-4xl'>Credible Reporting, Memorable Event Experience</h1>
-          <p className='mt-4 text-base text-white md:text-lg'>Leading Corporate Reporting & Event Solutions Partner in Indonesia</p>
+          <h1 className='text-3xl font-bold text-white md:text-[76px]'>Credible Reporting, Memorable Event Experience</h1>
+          <p className='mt-4 text-base text-white md:text-[18px]'>Leading Corporate Reporting & Event Solutions Partner in Indonesia</p>
 
           <PartnerLogoGrid />
         </div>

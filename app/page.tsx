@@ -1,9 +1,11 @@
-import Navbar from "./components/UI/Navbar";
+
 import HomeHero from "./components/beranda/HomeHero";
+import CompanySolution from "./components/beranda/CompanySolution";
 export default function Home() {
   return (
     <>
       <HomeHero />
+      <CompanySolution />
 
     </>
   );
