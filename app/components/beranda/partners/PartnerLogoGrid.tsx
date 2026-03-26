@@ -43,21 +43,21 @@ function PartnerLogoGrid() {
         onHoverEnd={() => targetSpeed.set(normalSpeed)}
       >
         {logos.map((logo, index) => (
-          <motion.div key={`${logo}-${index}`} className='h-14 w-36 shrink-0'>
+          <div key={`${logo}-${index}`} className='flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-slate-100/55 p-3 shadow-sm backdrop-blur-sm'>
             <motion.img
               src={logo}
               alt='Partner logo'
               className='h-full w-full object-contain'
               loading='lazy'
               decoding='async'
-              initial={{ filter: 'grayscale(100%)', opacity: 0.6 }}
+              initial={{ filter: 'grayscale(100%)', opacity: 0.7 }}
               whileHover={{
                 filter: 'grayscale(0%)',
                 opacity: 1,
                 transition: { duration: 0.4 },
               }}
             />
-          </motion.div>
+          </div>
         ))}
       </motion.div>
     </div>
