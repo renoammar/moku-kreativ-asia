@@ -1,0 +1,18 @@
+export const partnerLogos = [
+  '/images/partners/ipcc-logo-2.png',
+  '/images/partners/JETRO.png',
+  '/images/partners/Logo BPKH.svg',
+  '/images/partners/logo damri.png',
+  '/images/partners/Logo ISEI.png',
+  '/images/partners/Logo Kemenperin.svg',
+  '/images/partners/Logo Kementerian Pendidikan dan Kebudayaan (Kemendikbud) (PNG-480p) - koleksilogo.png',
+  '/images/partners/Logo LCKM.jpeg',
+  '/images/partners/Logo Maximus Insurance.png',
+  '/images/partners/Logo Noera.webp',
+  '/images/partners/Logo PTP.png',
+  '/images/partners/Logo Rukindo.png',
+  '/images/partners/Logo Rukun Raharja.webp',
+  '/images/partners/logo tanjung bunga.png',
+  '/images/partners/LogoLippoCikarang.png',
+  '/images/partners/sewatama.jpg',
+]

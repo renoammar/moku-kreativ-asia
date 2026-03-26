@@ -1,4 +1,5 @@
 import React from 'react'
+import PartnerLogoGrid from './partners/PartnerLogoGrid'
 
 function HomeHero() {
   return (
@@ -16,11 +17,12 @@ function HomeHero() {
 
       <div className='absolute inset-0 bg-black/40' />
 
-      <div className='relative z-10 flex h-full items-center justify-center '>
-        <div className="flex justify-center items-start flex-col bg-red-500">
-        <h1 className='text-4xl font-bold text-white'>Credible Reporting, Memorable Event Experience</h1>
-        <p className='text-lg text-white mt-4'>Leading Corporate Reporting & Event Solutions Partner in Indonesia</p>
-        <div className="bg-blue-400"></div>
+      <div className='relative z-10 flex h-full items-center justify-center px-4'>
+        <div className='mx-auto w-full max-w-6xl'>
+          <h1 className='text-3xl font-bold text-white md:text-4xl'>Credible Reporting, Memorable Event Experience</h1>
+          <p className='mt-4 text-base text-white md:text-lg'>Leading Corporate Reporting & Event Solutions Partner in Indonesia</p>
+
+          <PartnerLogoGrid />
         </div>
       </div>
     </section>
