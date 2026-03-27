@@ -4,14 +4,20 @@ import { useState } from 'react'
 
 function Navbar() {
   const navItems = [
-    { label: 'BERANDA' },
+    { label: 'BERANDA', href: '/' },
     {
       label: 'REPORTING SOLUTION',
-      children: ['All Reporting Solutions', 'Annual Report', 'Sustainability Report', 'Assurance', 'Company Profile'],
+      children: [
+        { label: 'All Reporting Solutions', href: '/all-reporting-solutions' },
+        { label: 'Annual Report', href: '#' },
+        { label: 'Sustainability Report', href: '#' },
+        { label: 'Assurance', href: '#' },
+        { label: 'Company Profile', href: '#' },
+      ],
     },
-    { label: 'EVENT SOLUTION' },
-    { label: '3D DESIGN' },
-    { label: 'CONTACT' },
+    { label: 'EVENT SOLUTION', href: '#' },
+    { label: '3D DESIGN', href: '#' },
+    { label: 'CONTACT', href: '#' },
   ]
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -37,7 +43,9 @@ function Navbar() {
       className={`fixed top-4 left-1/2 z-50 w-[80%] -translate-x-1/2 overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen || isMobileClosing ? 'rounded-4xl' : 'rounded-full'}`}
     >
       <div className='h-16 px-6 flex items-center justify-between'>
-        <img src="/images/moku_icon.png" alt="Moku Kreativ Asia" className='h-17.5 w-17.5' />
+        <a href='/' aria-label='Go to homepage'>
+          <img src='/images/moku_icon.png' alt='Moku Kreativ Asia' className='h-17.5 w-17.5' />
+        </a>
 
         <ul className='hidden md:flex items-center gap-8 text-slate-700 text-sm font-medium tracking-wide'>
           {navItems.map((item) => (
@@ -68,10 +76,12 @@ function Navbar() {
                         <ul className='text-slate-700'>
                           {item.children.map((child, index) => (
                             <li
-                              key={child}
+                              key={child.label}
                               className={`px-3 py-2 text-base ${index !== item.children.length - 1 ? 'border-b border-sky-100' : ''}`}
                             >
-                              {child}
+                              <a href={child.href} className='block text-slate-700 transition-colors duration-200 hover:text-sky-600'>
+                                {child.label}
+                              </a>
                             </li>
                           ))}
                         </ul>
@@ -80,7 +90,9 @@ function Navbar() {
                   </AnimatePresence>
                 </>
               ) : (
-                item.label
+                <a href={item.href ?? '#'} className='transition-colors duration-200 hover:text-sky-600'>
+                  {item.label}
+                </a>
               )}
             </li>
           ))}
@@ -144,14 +156,18 @@ function Navbar() {
                   className='overflow-hidden pl-4'
                 >
                   {item.children.map((child) => (
-                    <li key={child} className='py-2 text-xl text-slate-600'>
-                      {child}
+                    <li key={child.label} className='py-2 text-xl text-slate-600'>
+                      <a href={child.href} className='block transition-colors duration-200 hover:text-sky-600'>
+                        {child.label}
+                      </a>
                     </li>
                   ))}
                 </motion.ul>
               </>
             ) : (
-              <div className='py-4 text-4xl'>{item.label.charAt(0) + item.label.slice(1).toLowerCase()}</div>
+              <a href={item.href ?? '#'} className='block py-4 text-4xl'>
+                {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
+              </a>
             )}
           </li>
         ))}
