@@ -1,88 +1,134 @@
 'use client'
 import React, { useState } from 'react';
+import { AiOutlineFileText, AiOutlineSafetyCertificate } from 'react-icons/ai';
+import { MdOutlineEco, MdOutlineBusinessCenter, MdArrowForward, MdArrowBack } from 'react-icons/md';
 
-// Define the structure for our service items
 interface Service {
   id: string;
   title: string;
-  icon: React.ReactNode;
+  icon: React.ElementType; 
   description: string;
   imageUrl: string;
 }
 
 const services: Service[] = [
   {
-    id: 'account',
-    title: 'Account Management',
-    icon: <div className="w-10 h-10 bg-blue-200 rounded-full" />, // Placeholder for your icon
-    description: 'Our team ensures efficient store setup and campaign launches, enhancing your online presence through targeted digital marketing and streamlined operational support.',
-    imageUrl: 'https://via.placeholder.com/600x400', // Placeholder image
+    id: 'annual-report',
+    title: 'Annual Report (Laporan Tahunan)',
+    icon: AiOutlineFileText,
+    description: 'Layanan penyusunan Laporan Tahunan kami dirancang untuk menghadirkan Annual Report yang terintegrasi, kredibel, dan berstandar internasional, selaras dengan IFRS, PSAK berbasis IFRS, regulasi OJK, serta IFRS Sustainability (S1 dan S2).',
+    imageUrl: 'https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=1000',
   },
   {
-    id: 'marketing',
-    title: 'Marketing Strategy',
-    icon: <div className="w-10 h-10 bg-blue-300 rounded-full" />,
-    description: 'Strategic planning tailored to your brand growth and market positioning.',
-    imageUrl: 'https://via.placeholder.com/600x400',
+    id: 'sustainability',
+    title: 'Sustainability Report (Laporan Keberlanjutan)',
+    icon: MdOutlineEco,
+    description: 'Layanan penyusunan Laporan Tahunan kami dirancang untuk menghadirkan Annual Report yang terintegrasi, kredibel, dan berstandar internasional, selaras dengan IFRS, PSAK berbasis IFRS, regulasi OJK, serta IFRS Sustainability (S1 dan S2).',
+    imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000',
   },
-  // Add the rest of your 6 items here...
-  { id: 'analytics', title: 'Analytics', icon: <div className="w-10 h-10 bg-blue-300 rounded-full" />, description: 'Data-driven insights...', imageUrl: 'https://via.placeholder.com/600x400' },
-  { id: 'content', title: 'Content Production', icon: <div className="w-10 h-10 bg-blue-300 rounded-full" />, description: 'Creative assets...', imageUrl: 'https://via.placeholder.com/600x400' },
-  { id: 'customer', title: 'Customer Service', icon: <div className="w-10 h-10 bg-blue-300 rounded-full" />, description: 'Support solutions...', imageUrl: 'https://via.placeholder.com/600x400' },
-  { id: 'warehouse', title: 'Warehouse & Fulfilment', icon: <div className="w-10 h-10 bg-blue-300 rounded-full" />, description: 'Logistics and storage...', imageUrl: 'https://via.placeholder.com/600x400' },
+  {
+    id: 'assurance',
+    title: 'Assurance',
+    icon: AiOutlineSafetyCertificate,
+    description: 'Kami membantu perusahaan memberikan keyakinan yang memadai kepada investor dan regulator atas keakuratan serta kepatuhan terhadap regulasi melalui evaluasi independen yang profesional dan kompeten.',
+    imageUrl: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1000',
+  },
+  {
+    id: 'company-profile',
+    title: 'Company Profile',
+    icon: MdOutlineBusinessCenter,
+    description: 'Layanan penyusunan Company Profile kami dirancang secara komprehensif untuk memperkuat positioning dan kredibilitas perusahaan. Kami menyusun narasi strategis dan desain profesional.',
+    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000',
+  },
 ];
 
 export default function SolutionServices() {
-  const [activeTab, setActiveTab] = useState<Service>(services[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeTab = services[activeIndex];
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % services.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+  };
 
   return (
-    <section className="bg-[#0051B3] min-h-screen p-8 md:p-16 text-white font-sans">
-      <h2 className="text-3xl font-bold mb-12">All Inclusive Services</h2>
+    <section className="bg-[#0051B3] min-h-screen p-6 md:p-16 text-white font-sans overflow-x-hidden flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">All Inclusive Services</h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        {/* Left Side: Icon Grid */}
-        <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-4">
-          {services.map((service) => (
-            <button
-              key={service.id}
-              onClick={() => setActiveTab(service)}
-              className={`flex flex-col justify-between items-start p-6 rounded-2xl h-52 transition-all duration-300 border rounded-br-[62px] border-white/10 ${
-                activeTab.id === service.id 
-                  ? 'bg-[#E0F4FF] text-[#0051B3]' 
-                  : 'bg-white/10 hover:bg-white/20'
-              }`}
-            >
-              <div className="mb-4">
-                {/* Your Icon Placeholder */}
-                {service.icon}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left Side: Desktop Grid (Hidden on Mobile) */}
+          <div className="hidden lg:grid lg:col-span-7 grid-cols-2 gap-4">
+            {services.map((service, index) => {
+              const IconComponent = service.icon;
+              const isActive = activeIndex === index;
+
+              return (
+                <button
+                  key={service.id}
+                  onClick={() => setActiveIndex(index)}
+                  className={`flex flex-col justify-between items-start p-8 transition-colors duration-200 border h-56 group ${
+                    isActive 
+                      ? 'bg-[#E0F4FF] text-[#0051B3] border-transparent shadow-xl' 
+                      : 'bg-white/10 border-white/10 hover:bg-white/20 text-white'
+                  }`}
+                  style={{ borderRadius: '24px 24px 70px 24px' }}
+                >
+                  <IconComponent className="text-4xl" />
+                  <span className="text-left font-bold text-xl leading-tight">{service.title}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right Side: Content Card (Visible on both, behaves as a slider on mobile) */}
+          <div className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
+            <div className="bg-white rounded-[2rem] overflow-hidden text-slate-800 shadow-2xl relative min-h-[500px] flex flex-col">
+              <div className="p-4">
+                <img 
+                  src={activeTab.imageUrl} 
+                  alt={activeTab.title}
+                  className="w-full h-64 md:h-72 object-cover rounded-[1.5rem]"
+                />
               </div>
-              <span className="text-left font-bold text-lg leading-tight">
-                {service.title}
-              </span>
-            </button>
-          ))}
-        </div>
+              
+              <div className="px-8 pb-24 pt-4 md:pb-12 flex-grow">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#003B7E]">
+                  {activeTab.title}
+                </h3>
+                <p className="text-slate-600 leading-relaxed text-base md:text-lg">
+                  {activeTab.description}
+                </p>
+              </div>
 
-        {/* Right Side: Content Card */}
-        <div className="lg:col-span-5 bg-white rounded-[2rem] overflow-hidden text-slate-800 shadow-2xl">
-          <div className="p-4">
-            <img 
-              src={activeTab.imageUrl} 
-              alt={activeTab.title}
-              className="w-full h-64 object-cover rounded-2xl"
-            />
+              {/* Mobile Navigation Controls (Hidden on Desktop) */}
+              <div className="absolute bottom-8 left-8 right-8 flex justify-between items-center lg:hidden bg-white/90 backdrop-blur-sm py-2">
+                <span className="text-2xl font-bold text-[#0051B3] opacity-50">
+                  {activeIndex + 1}
+                </span>
+                <div className="flex gap-3">
+                  <button 
+                    onClick={handlePrev}
+                    className="p-3 border border-[#0051B3]/20 rounded-full text-[#0051B3] active:bg-[#0051B3] active:text-white transition-colors"
+                  >
+                    <MdArrowBack size={24} />
+                  </button>
+                  <button 
+                    onClick={handleNext}
+                    className="p-3 bg-[#0051B3] text-white rounded-full active:bg-[#003B7E] shadow-lg"
+                  >
+                    <MdArrowForward size={24} />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="px-8 pb-12 pt-4">
-            <h3 className="text-3xl font-bold mb-4 text-[#003B7E]">
-              {activeTab.title}
-            </h3>
-            <p className="text-slate-600 leading-relaxed text-lg">
-              {activeTab.description}
-            </p>
-          </div>
-        </div>
 
+        </div>
       </div>
     </section>
   );
