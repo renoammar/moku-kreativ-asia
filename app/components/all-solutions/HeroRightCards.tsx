@@ -3,16 +3,21 @@ import { FiBarChart2, FiClock, FiShield } from 'react-icons/fi'
 
 const heroHighlights = [
   {
+    id: 'services',
     icon: FiBarChart2,
-    title: '3',
-    subtitle: 'Jenis Layanan',
+    title: 'Jenis Layanan',
+    subtitle: 'Annual Report, Sustainability Report, Assurance, Company Profile',
   },
   {
+    id: 'licensed-assurance',
     icon: FiShield,
-    title: 'AA1000AS V3',
-    subtitle: 'Standar Internasional',
+    title: '',
+    subtitle: '',
+    img: 'licensed_assurance_provider_logo.png',
+    isLicensedBadge: true,
   },
   {
+    id: 'support',
     icon: FiClock,
     title: '24/7',
     subtitle: 'Support Available',
@@ -27,17 +32,29 @@ function HeroRightCards() {
 
         return (
           <div
-            key={highlight.title}
-            className='w-full rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-md lg:min-w-90'
+            key={highlight.id}
+            className='w-full h-27.5 rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-md lg:min-w-90'
           >
             <div className='flex items-center gap-5'>
               <div className='flex h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-3xl text-white'>
                 <Icon aria-hidden />
               </div>
 
-              <div>
-                <p className='text-4xl font-bold leading-none text-white'>{highlight.title}</p>
-                <p className='mt-2 text-3xl font-semibold text-emerald-200'>{highlight.subtitle}</p>
+              <div className='flex justify-center items-start flex-col'>
+                {highlight.title && <p className='text-4xl font-bold leading-none text-white'>{highlight.title}</p>}
+                {highlight.subtitle && <p className='text-sm text-white/90'>{highlight.subtitle}</p>}
+                {highlight.img && highlight.isLicensedBadge ? (
+                  <div className='relative -mt-1 h-20 w-[18.5rem]'>
+                    <img
+                      src={`/images/${highlight.img}`}
+                      alt='AA1000 licensed assurance provider'
+                      className='h-full w-full object-contain object-left bg-white/40 rounded'
+                    />
+                  </div>
+                ) : null}
+                {highlight.img && !highlight.isLicensedBadge ? (
+                  <img src={`/images/${highlight.img}`} alt={highlight.subtitle} className='h-21' />
+                ) : null}
               </div>
             </div>
           </div>

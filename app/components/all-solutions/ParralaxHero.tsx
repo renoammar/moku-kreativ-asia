@@ -52,14 +52,15 @@ function ParralaxHero({ children }: Props) {
 
   return (
     <section ref={sectionRef} className='relative h-screen overflow-hidden'>
-      <div className='pointer-events-none absolute inset-0 z-10 bg-black/55' />
+      <div className='pointer-events-none absolute inset-0 z-10 bg-[#0D3C74]/60' />
+      <div className='pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(18,95,249,0.26)_0%,rgba(13,60,116,0.7)_100%)] mix-blend-multiply' />
 
       {children ? <div className='absolute inset-0 z-20'>{children}</div> : null}
 
         <img
           src='/parallax/base_mountain.jpg'
           alt='Mountain background'
-          className='absolute inset-0 h-full w-full object-cover'
+          className='absolute inset-0 h-full w-full object-cover brightness-[0.74] contrast-[0.9] saturate-[1.1]'
           loading='eager'
           fetchPriority='high'
         />
@@ -69,7 +70,7 @@ function ParralaxHero({ children }: Props) {
           <motion.img
             src='/parallax/mountain_parallax.png'
             alt='Foreground mountain'
-            className='pointer-events-none absolute left-0 top-[-10%] h-[120%] w-full object-cover will-change-transform'
+            className='pointer-events-none absolute left-0 top-[-10%] h-[120%] w-full object-cover brightness-[0.82] contrast-[0.9] saturate-[1.12] will-change-transform'
             style={{ y: mountainY, transform: 'translateZ(0)' }}
             loading='eager'
             fetchPriority='high'
