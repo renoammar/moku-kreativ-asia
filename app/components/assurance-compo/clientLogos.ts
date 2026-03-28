@@ -1,18 +1,4 @@
 export const clientLogos = [
-  { src: '/images/partners/Logo PTP.png', alt: 'PTP' },
-  { src: '/images/partners/LogoLippoCikarang.png', alt: 'Lippo Cikarang' },
-  { src: '/images/partners/sewatama.jpg', alt: 'Sewatama' },
-  { src: '/images/partners/logo tanjung bunga.png', alt: 'Tanjung Bunga' },
-  { src: '/images/partners/Logo Noera.webp', alt: 'Noera' },
-  { src: '/images/partners/Logo ISEI.png', alt: 'ISEI' },
-  { src: '/images/partners/JETRO.png', alt: 'JETRO' },
-  { src: '/images/partners/logo damri.png', alt: 'Damri' },
-  { src: '/images/partners/ipcc-logo-2.png', alt: 'IPCC' },
-  { src: '/images/partners/Logo Kementerian Pendidikan dan Kebudayaan (Kemendikbud) (PNG-480p) - koleksilogo.png', alt: 'Kementerian Pendidikan dan Kebudayaan' },
-  { src: '/images/partners/Logo LCKM.jpeg', alt: 'LCKM' },
-  { src: '/images/partners/Logo Rukindo.png', alt: 'Rukindo' },
-  { src: '/images/partners/Logo Rukun Raharja.webp', alt: 'Rukun Raharja' },
   { src: '/images/partners/Logo Maximus Insurance.png', alt: 'Maximus Insurance' },
-  { src: '/images/partners/Logo BPKH.svg', alt: 'BPKH' },
-  { src: '/images/partners/Logo Kemenperin.svg', alt: 'Kemenperin' },
+ 
 ]
