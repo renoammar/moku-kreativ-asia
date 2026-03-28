@@ -136,12 +136,12 @@ function Navbar() {
                 <button
                   type='button'
                   onClick={() => setIsMobileReportingOpen((prev) => !prev)}
-                  className='w-full py-4 flex items-center justify-between text-4xl'
+                  className='flex w-full items-center justify-between py-3 text-2xl font-medium tracking-wide'
                   aria-expanded={isMobileReportingOpen}
                   aria-controls='mobile-reporting-submenu'
                 >
                   <span>{item.label.charAt(0) + item.label.slice(1).toLowerCase()}</span>
-                  <span className='text-sky-500 text-2xl leading-none'>{isMobileReportingOpen ? '−' : '+'}</span>
+                  <span className='text-sky-500 text-xl leading-none'>{isMobileReportingOpen ? '−' : '+'}</span>
                 </button>
 
                 <motion.ul
@@ -156,7 +156,7 @@ function Navbar() {
                   className='overflow-hidden pl-4'
                 >
                   {item.children.map((child) => (
-                    <li key={child.label} className='py-2 text-xl text-slate-600'>
+                    <li key={child.label} className='py-2 text-base text-slate-600'>
                       <a href={child.href} className='block transition-colors duration-200 hover:text-sky-600'>
                         {child.label}
                       </a>
@@ -165,7 +165,7 @@ function Navbar() {
                 </motion.ul>
               </>
             ) : (
-              <a href={item.href ?? '#'} className='block py-4 text-4xl'>
+              <a href={item.href ?? '#'} className='block py-3 text-2xl font-medium tracking-wide'>
                 {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
               </a>
             )}
