@@ -11,7 +11,7 @@ function Navbar() {
         { label: 'All Reporting Solutions', href: '/all-reporting-solutions' },
         { label: 'Annual Report', href: '#' },
         { label: 'Sustainability Report', href: '#' },
-        { label: 'Assurance', href: '#' },
+        { label: 'Assurance', href: '/assurance' },
         { label: 'Company Profile', href: '#' },
       ],
     },
