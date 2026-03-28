@@ -89,7 +89,7 @@ const AnnualReportDescription = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* <div className="grid md:grid-cols-3 gap-8">
           {[
             { title: "Analisis Kinerja", desc: "Mengolah data keuangan dan operasional secara terstruktur", icon: <FaChartLine /> },
             { title: "Struktur Konten", desc: "Menyusun laporan agar alur informasi lebih jelas", icon: <FaBookOpen /> },
@@ -103,7 +103,7 @@ const AnnualReportDescription = () => {
               <p className="text-sm text-[#0D3C74]/70">{item.desc}</p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* --- SECTION 4: Ruang Lingkup & Manfaat --- */}
