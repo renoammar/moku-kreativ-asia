@@ -1,7 +1,7 @@
 import React from 'react'
-import { clientLogos } from './clientLogos'
+import { clientLogos } from './AssuranceclientLogos'
 
-function ClientsList() {
+function AssuranceClientsList() {
   return (
     <section className='mx-auto mt-20 max-w-7xl px-6 py-12 md:px-10'>
       <h2 className='mb-12 text-center text-3xl font-semibold text-[#125ff9] md:text-4xl'>
@@ -28,4 +28,4 @@ function ClientsList() {
   )
 }
 
-export default ClientsList
+export default AssuranceClientsList
