@@ -9,7 +9,7 @@ function Navbar() {
       label: 'REPORTING SOLUTION',
       children: [
         { label: 'All Reporting Solutions', href: '/all-reporting-solutions' },
-        { label: 'Annual Report', href: '#' },
+        { label: 'Annual Report', href: '/annual-report' },
         { label: 'Sustainability Report', href: '#' },
         { label: 'Assurance', href: '/assurance' },
         { label: 'Company Profile', href: '#' },
