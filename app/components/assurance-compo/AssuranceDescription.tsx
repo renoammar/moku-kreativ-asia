@@ -116,22 +116,22 @@ const AssuranceDescription = () => {
       {/* --- SECTION 3: Ruang Lingkup & Manfaat --- */}
       <div className="grid gap-12 rounded-3xl bg-[#0D3C74] p-8 text-white lg:grid-cols-2 md:p-12">
         <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-[#8EBBFF]">Ruang Lingkup Assurance</h3>
-          <p className="text-white/80">Layanan mencakup evaluasi menyeluruh terhadap aspek ESG dan program CSR perusahaan.</p>
+          <h3 className="text-2xl font-bold text-white">Ruang Lingkup Assurance</h3>
+          <p className="text-white/90">Layanan mencakup evaluasi menyeluruh terhadap aspek ESG dan program CSR perusahaan.</p>
           
           <div className="space-y-4">
             <div className="flex items-start gap-4 rounded-xl bg-white/10 p-4">
               <MdAssignment className="shrink-0 text-3xl text-[#8EBBFF]" />
               <div>
                 <p className="font-semibold">Proses Assurance</p>
-                <p className="text-sm text-white/70">Evaluasi program CSR dan laporan keberlanjutan sesuai standar sektor industri.</p>
+                <p className="text-sm text-white/90">Evaluasi program CSR dan laporan keberlanjutan sesuai standar sektor industri.</p>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-xl bg-white/10 p-4">
               <MdOutlineVerifiedUser className="shrink-0 text-3xl text-[#8EBBFF]" />
               <div>
                 <p className="font-semibold">Penerbitan Statement</p>
-                <p className="text-sm text-white/70">Pernyataan independen berdasarkan analisis data dan observasi standar AA1000.</p>
+                <p className="text-sm text-white/90">Pernyataan independen berdasarkan analisis data dan observasi standar AA1000.</p>
               </div>
             </div>
           </div>
@@ -148,7 +148,7 @@ const AssuranceDescription = () => {
               "Mendorong kepedulian lingkungan"
             ].map((text, i) => (
               <li key={i} className="flex items-center gap-3">
-                <FaCheckCircle className="text-white/85" />
+                <FaCheckCircle className="text-white/90" />
                 <span className="font-medium">{text}</span>
               </li>
             ))}
