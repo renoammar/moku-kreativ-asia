@@ -51,11 +51,11 @@ function ParralaxHero({ children }: Props) {
   })
 
   return (
-    <section ref={sectionRef} className='relative h-screen overflow-hidden'>
+    <section ref={sectionRef} className='relative min-h-svh overflow-hidden md:h-screen'>
       <div className='pointer-events-none absolute inset-0 z-10 bg-[#0D3C74]/60' />
       <div className='pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(18,95,249,0.26)_0%,rgba(13,60,116,0.7)_100%)] mix-blend-multiply' />
 
-      {children ? <div className='absolute inset-0 z-20'>{children}</div> : null}
+      {children ? <div className='relative z-20 min-h-svh md:absolute md:inset-0 md:min-h-0'>{children}</div> : null}
 
         <img
           src='/parallax/base_mountain.jpg'
