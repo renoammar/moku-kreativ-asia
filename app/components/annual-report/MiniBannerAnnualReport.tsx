@@ -11,12 +11,12 @@ function MiniBannerAnnualReport() {
         
         {/* Title */}
         <h2 className="text-3xl md:text-4xl font-bold leading-snug">
-          Ingin Annual Report perusahaan Anda lebih kuat dan meyakinkan?
+         Ingin memastikan Annual Report Anda lebih kredibel dan terpercaya?
         </h2>
 
         {/* Subtitle */}
         <p className="text-lg md:text-xl text-slate-200 max-w-3xl font-light">
-          Dapatkan sesi konsultasi gratis untuk menyusun laporan tahunan yang lebih strategis.
+          Dapatkan sesi konsultasi gratis dan temukan solusi terbaik bersama tim kami.
         </p>
 
         {/* Call to Action Buttons */}
