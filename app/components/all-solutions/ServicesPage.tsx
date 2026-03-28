@@ -13,17 +13,10 @@ interface ServiceItem {
 
 const services: ServiceItem[] = [
   {
-    title: "Assurance Berbasis Standar AA1000 AccountAbility (AA1000 AS v3)",
+    title: "Assurance AA1000 Provider 001 - 150",
     description: "Assurance Standard terkemuka di dunia yang berfokus pada evaluasi kinerja keberlanjutan perusahaan. Proses kami tidak hanya memverifikasi data, tetapi juga menilai bagaimana Anda menerapkan Prinsip-Prinsip AccountAbility.",
     features: ["Verifikasi data akurat dan reliable", "Audit transparansi pelaporan", "Compliance check terhadap standar"],
     icon: <HiOutlineShieldCheck className="w-8 h-8 text-white" />,
-    color: "bg-[#0D3C74]",
-  },
-  {
-    title: "Assurance Berbasis ISAE 3000 dan ISSA 5000",
-    description: "Standar internasional yang diakui secara global untuk penjaminan atas informasi non-keuangan. Kami menerapkan kerangka kerja ini untuk memberikan tingkat keyakinan yang tinggi (high level of assurance) kepada investor dan regulator.",
-    features: ["Tim bersertifikat CPA, CSRS, CSRA", "Pengalaman 15+ tahun sustainability", "Keahlian multi-industri"],
-    icon: <HiOutlineUsers className="w-8 h-8 text-white" />,
     color: "bg-[#0D3C74]",
   },
   {
@@ -39,7 +32,14 @@ const services: ServiceItem[] = [
     features: ["Penyusunan data ESG yang akurat dan dapat dipercaya", "Penyajian laporan yang transparan dan terstruktur", "Kesesuaian dengan standar dan regulasi yang berlaku"],
     icon: <HiOutlineDocumentReport className="w-8 h-8 text-white" />,
     color: "bg-[#0D3C74]",
-  }
+  },
+    {
+    title: "Company Profile",
+    description: "Layanan penyusunan Company Profile kami dirancang secara komprehensif untuk memperkuat positioning dan kredibilitas perusahaan. Kami menyusun narasi strategis, struktur konten, desain profesional, hingga penyesuaian dengan kebutuhan investor dan regulator. Didukung pendekatan branding dan komunikasi korporat, hasil akhir tampil informatif, persuasif, dan selaras dengan identitas perusahaan.",
+    features: ["Penyusunan konten yang terstruktur dan informatif", "Penyampaian brand story yang kuat dan konsisten", "Desain yang profesional dan sesuai dengan identitas brand"],
+    icon: <HiOutlineUsers className="w-8 h-8 text-white" />,
+    color: "bg-[#0D3C74]",
+  },
 ];
 
 export default function ServicesPage() {

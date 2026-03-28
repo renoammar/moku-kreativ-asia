@@ -29,8 +29,8 @@ function LayananLainnya() {
     {
       title: "Sustainability Report",
       tag: "ESG STANDARDS",
-      href: "/all-reporting-solutions/sustainability-report",
-      matchPaths: ["/all-reporting-solutions/sustainability-report"],
+      href: "/sustainability-report",
+      matchPaths: ["/sustainability-report"],
       description: "Pendampingan profesional untuk membantu perusahaan menyusun laporan keberlanjutan yang terstruktur, terukur, dan sesuai standar seperti GRI, POJK, atau ISSB.",
       extra: "Mengungkapkan kinerja ESG secara transparan, strategis, dan kredibel kepada pemangku kepentingan.",
       footer: "Mendukung tata kelola, reputasi, dan nilai jangka panjang perusahaan."
