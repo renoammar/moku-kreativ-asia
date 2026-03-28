@@ -8,7 +8,7 @@ function HeroLeftContent() {
         Laporan
       </h1>
       <p className='text-2xl leading-[1.28] text-white/95'>
-        Kami menyediakan layanan penyusunan laporan yang komprehensif, termasuk Sustainability Report, SustainabilityKami telah membantu perusahaan dalam penyusunan laporan baik itu yang merupakan bagian dari kewajiban dari regulator maupun laporan yang di khususnya untuk keperluan tertentu
+        Kami menyediakan layanan penyusunan laporan yang komprehensif, termasuk Sustainability Report, Sustainability. Kami telah membantu perusahaan dalam penyusunan laporan baik itu yang merupakan bagian dari kewajiban dari regulator maupun laporan yang di khususnya untuk keperluan tertentu
       </p>
     </div>
   )
