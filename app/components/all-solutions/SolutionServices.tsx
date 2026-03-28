@@ -55,7 +55,7 @@ export default function SolutionServices() {
   };
 
   return (
-    <section className="bg-[#0051B3] min-h-screen p-6 md:p-16 text-white font-sans overflow-x-hidden flex items-center">
+    <section className="min-h-screen bg-[#0D3C74] bg-[linear-gradient(180deg,#125FF9_0%,#0D3C74_42%,#082A55_100%)] p-6 text-white font-sans overflow-x-hidden flex items-center md:p-16">
       <div className="max-w-7xl mx-auto w-full">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">All Inclusive Services</h2>
 
@@ -73,7 +73,7 @@ export default function SolutionServices() {
                   onClick={() => setActiveIndex(index)}
                   className={`flex flex-col justify-between items-start p-8 transition-colors duration-200 border h-56 group ${
                     isActive 
-                      ? 'bg-[#E0F4FF] text-[#0051B3] border-transparent shadow-xl' 
+                      ? 'bg-white text-[#0D3C74] border-transparent shadow-xl' 
                       : 'bg-white/10 border-white/10 hover:bg-white/20 text-white'
                   }`}
                   style={{ borderRadius: '24px 24px 70px 24px' }}
@@ -87,17 +87,17 @@ export default function SolutionServices() {
 
           {/* Right Side: Content Card (Visible on both, behaves as a slider on mobile) */}
           <div className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
-            <div className="bg-white rounded-[2rem] overflow-hidden text-slate-800 shadow-2xl relative min-h-[500px] flex flex-col">
+            <div className="bg-white rounded-4xl overflow-hidden text-slate-800 shadow-2xl relative min-h-125 flex flex-col">
               <div className="p-4">
                 <img 
                   src={activeTab.imageUrl} 
                   alt={activeTab.title}
-                  className="w-full h-64 md:h-72 object-cover rounded-[1.5rem]"
+                  className="w-full h-64 md:h-72 object-cover rounded-3xl"
                 />
               </div>
               
-              <div className="px-8 pb-24 pt-4 md:pb-12 flex-grow">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#003B7E]">
+              <div className="px-8 pb-24 pt-4 md:pb-12 grow">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#0D3C74]">
                   {activeTab.title}
                 </h3>
                 <p className="text-slate-600 leading-relaxed text-base md:text-lg">
@@ -107,19 +107,21 @@ export default function SolutionServices() {
 
               {/* Mobile Navigation Controls (Hidden on Desktop) */}
               <div className="absolute bottom-8 left-8 right-8 flex justify-between items-center lg:hidden bg-white/90 backdrop-blur-sm py-2">
-                <span className="text-2xl font-bold text-[#0051B3] opacity-50">
-                  {activeIndex + 1}
+                <span className="text-2xl font-bold text-[#0D3C74]">
+                  <span className="opacity-100">{activeIndex + 1}</span>
+                  <span className="mx-1 opacity-45">-</span>
+                  <span className="opacity-35">{services.length}</span>
                 </span>
                 <div className="flex gap-3">
                   <button 
                     onClick={handlePrev}
-                    className="p-3 border border-[#0051B3]/20 rounded-full text-[#0051B3] active:bg-[#0051B3] active:text-white transition-colors"
+                    className="p-3 border border-[#0D3C74]/20 rounded-full text-[#0D3C74] active:bg-[#0D3C74] active:text-white transition-colors"
                   >
                     <MdArrowBack size={24} />
                   </button>
                   <button 
                     onClick={handleNext}
-                    className="p-3 bg-[#0051B3] text-white rounded-full active:bg-[#003B7E] shadow-lg"
+                    className="p-3 bg-[#0D3C74] text-white rounded-full active:bg-[#082A55] shadow-lg"
                   >
                     <MdArrowForward size={24} />
                   </button>

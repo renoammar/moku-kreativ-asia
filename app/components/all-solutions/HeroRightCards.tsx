@@ -44,7 +44,7 @@ function HeroRightCards() {
                 {highlight.title && <p className='text-4xl font-bold leading-none text-white'>{highlight.title}</p>}
                 {highlight.subtitle && <p className='text-sm text-white/90'>{highlight.subtitle}</p>}
                 {highlight.img && highlight.isLicensedBadge ? (
-                  <div className='h-20 w-[18.5rem] flex justify-center items-center '>
+                  <div className='h-20 w-74 flex justify-center items-center '>
                     <img
                       src={`/images/${highlight.img}`}
                       alt='AA1000 licensed assurance provider'
