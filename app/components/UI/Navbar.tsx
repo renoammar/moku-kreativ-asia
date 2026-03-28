@@ -15,7 +15,7 @@ function Navbar() {
         { label: 'Company Profile', href: '#' },
       ],
     },
-    { label: 'EVENT SOLUTION', href: '#' },
+    { label: 'EVENT SOLUTION', href: '/event' },
     { label: '3D DESIGN', href: '#' },
     { label: 'CONTACT', href: '#' },
   ]
@@ -40,6 +40,7 @@ function Navbar() {
 
   return (
     <div
+      id='site-navbar'
       className={`fixed top-4 left-1/2 z-50 w-[80%] -translate-x-1/2 overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen || isMobileClosing ? 'rounded-4xl' : 'rounded-full'}`}
     >
       <div className='h-16 px-6 flex items-center justify-between'>
