@@ -37,6 +37,14 @@ function getPortfolioHref(video: PortfolioVideo): string {
   return getVideoHref(video.youtubeUrl)
 }
 
+function formatPortfolioDate(value: string): string {
+  return new Date(value).toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  })
+}
+
 export default function AllPortfolioPage() {
   const [videos, setVideos] = useState<PortfolioVideo[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -73,9 +81,6 @@ export default function AllPortfolioPage() {
         <div>
           <p className='text-xs font-bold uppercase tracking-[0.24em] text-slate-500'>Portfolio Wall</p>
           <h1 className='mt-3 text-4xl font-semibold text-slate-900 md:text-5xl'>All Portfolio</h1>
-          <p className='mt-4 max-w-2xl text-slate-700'>
-            Photo-summary layout using flexbox and flex-wrap. New portfolio items automatically flow into new columns.
-          </p>
         </div>
 
         <Link
@@ -105,14 +110,14 @@ export default function AllPortfolioPage() {
             <Link
               key={video._id}
               href={getPortfolioHref(video)}
-              className='group block min-w-56 max-w-85 flex-[0_1_300px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl'
+              className='group block w-[384px] transition-all duration-300 hover:-translate-y-1'
             >
-              <div className='relative aspect-video overflow-hidden'>
+              <div className='relative w-[384px] h-[216px] overflow-hidden rounded-3xl rounded-br-[68px] shadow-sm'>
                 {video.thumbnailUrl ? (
                   <img
                     src={video.thumbnailUrl}
                     alt={video.thumbnailAlt || video.title}
-                    className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
+                    className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
                     loading='lazy'
                   />
                 ) : (
@@ -121,9 +126,14 @@ export default function AllPortfolioPage() {
                   </div>
                 )}
               </div>
-              <div className='px-5 py-4'>
-                <h2 className='line-clamp-2 text-lg font-semibold leading-snug text-slate-900'>{video.title}</h2>
-                {video.caption ? <p className='mt-2 line-clamp-2 text-sm text-slate-600'>{video.caption}</p> : null}
+
+              <div className='mt-4 px-2'>
+                <p className='mb-1 text-[13px] font-semibold text-[#00AEEF]'>
+                  {formatPortfolioDate(video.publishedAt || new Date().toISOString())}
+                </p>
+                <h2 className='line-clamp-2 text-lg leading-snug font-bold text-[#003366] transition-colors group-hover:text-[#00AEEF]'>
+                  {video.title}
+                </h2>
               </div>
             </Link>
           ))}
