@@ -1,10 +1,13 @@
 'use client'
 import { AnimatePresence, motion } from 'motion/react'
+import Link from 'next/link'
 import { useState } from 'react'
 
 function Navbar() {
   const navItems = [
     { label: 'BERANDA', href: '/' },
+    { label: 'NEWSROOM', href: '/news' },
+    { label: 'PORTFOLIO', href: '/portfolio' },
     {
       label: 'REPORTING SOLUTION',
       children: [
@@ -44,9 +47,9 @@ function Navbar() {
       className={`fixed top-4 left-1/2 z-50 w-[80%] -translate-x-1/2 overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen || isMobileClosing ? 'rounded-4xl' : 'rounded-full'}`}
     >
       <div className='h-16 px-6 flex items-center justify-between'>
-        <a href='/' aria-label='Go to homepage'>
+        <Link href='/' aria-label='Go to homepage'>
           <img src='/images/moku_icon.png' alt='Moku Kreativ Asia' className='h-17.5 w-17.5' />
-        </a>
+        </Link>
 
         <ul className='hidden md:flex items-center gap-8 text-slate-700 text-sm font-medium tracking-wide'>
           {navItems.map((item) => (
@@ -80,9 +83,9 @@ function Navbar() {
                               key={child.label}
                               className={`px-3 py-2 text-base ${index !== item.children.length - 1 ? 'border-b border-sky-100' : ''}`}
                             >
-                              <a href={child.href} className='block text-slate-700 transition-colors duration-200 hover:text-sky-600'>
+                              <Link href={child.href} className='block text-slate-700 transition-colors duration-200 hover:text-sky-600'>
                                 {child.label}
-                              </a>
+                              </Link>
                             </li>
                           ))}
                         </ul>
@@ -91,9 +94,9 @@ function Navbar() {
                   </AnimatePresence>
                 </>
               ) : (
-                <a href={item.href ?? '#'} className='transition-colors duration-200 hover:text-sky-600'>
+                <Link href={item.href ?? '#'} className='transition-colors duration-200 hover:text-sky-600'>
                   {item.label}
-                </a>
+                </Link>
               )}
             </li>
           ))}
@@ -158,17 +161,17 @@ function Navbar() {
                 >
                   {item.children.map((child) => (
                     <li key={child.label} className='py-2 text-base text-slate-600'>
-                      <a href={child.href} className='block transition-colors duration-200 hover:text-sky-600'>
+                      <Link href={child.href} className='block transition-colors duration-200 hover:text-sky-600'>
                         {child.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </motion.ul>
               </>
             ) : (
-              <a href={item.href ?? '#'} className='block py-3 text-2xl font-medium tracking-wide'>
+              <Link href={item.href ?? '#'} className='block py-3 text-2xl font-medium tracking-wide'>
                 {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
-              </a>
+              </Link>
             )}
           </li>
         ))}

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/UI/Navbar";
-import Footer from "./components/UI/Footer";
+import SiteChrome from "@/app/components/UI/SiteChrome";
 const figtree = Figtree({
   variable: "--font-figtree",
   subsets: ["latin"],
@@ -31,9 +30,7 @@ export default function RootLayout({
       className={`${figtree.variable} h-full antialiased`}
     >
       <body className={`${figtree.className} min-h-full flex flex-col bg-white text-black`}>
-        <Navbar />
-        {children}
-         <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
