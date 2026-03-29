@@ -17,7 +17,18 @@ export const newsroomPostBySlugQuery = groq`
     "slug": slug.current,
     excerpt,
     publishedAt,
-    body
+    "mainImage": {
+      "url": mainImage.asset->url,
+      "alt": mainImage.alt,
+      "caption": mainImage.caption
+    },
+    body[]{
+      ...,
+      _type == "image" => {
+        ...,
+        "url": asset->url
+      }
+    }
   }
 `
 

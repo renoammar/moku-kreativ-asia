@@ -11,6 +11,30 @@ type NewsArticlePageProps = {
 }
 
 const portableTextComponents: Partial<PortableTextReactComponents> = {
+  block: {
+    normal: ({children}) => <p className='mb-6 leading-relaxed text-[#333]'>{children}</p>,
+    h4: ({children}) => <h4 className='mb-4 inline font-bold uppercase tracking-tight text-black'>{children} </h4>,
+  },
+  types: {
+    image: ({value}) => {
+      const imageValue = value as {url?: string; alt?: string; caption?: string}
+      if (!imageValue?.url) {
+        return null
+      }
+
+      return (
+        <figure className='my-10'>
+          <img
+            src={imageValue.url}
+            alt={imageValue.alt || 'News image'}
+            className='w-full rounded-2xl object-cover'
+            loading='lazy'
+          />
+          {imageValue.caption ? <figcaption className='mt-3 text-sm text-slate-600'>{imageValue.caption}</figcaption> : null}
+        </figure>
+      )
+    },
+  },
   marks: {
     link: ({children, value}) => (
       <a href={value?.href} className='text-blue-700 underline underline-offset-2' rel='noreferrer noopener'>
@@ -21,9 +45,9 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
 }
 
 function formatPublishedAt(value: string): string {
-  return new Date(value).toLocaleDateString('id-ID', {
-    day: '2-digit',
+  return new Date(value).toLocaleDateString('en-US', {
     month: 'long',
+    day: 'numeric',
     year: 'numeric',
   })
 }
@@ -62,27 +86,39 @@ export default async function NewsArticlePage({params}: NewsArticlePageProps) {
   }
 
   return (
-    <main className='mx-auto w-full max-w-4xl px-4 pb-20 pt-32 md:px-8'>
-      <header className='mb-8 border-b border-slate-200 pb-5'>
-        <p className='text-sm text-slate-500'>{formatPublishedAt(post.publishedAt)}</p>
-        <h1 className='mt-2 text-4xl font-semibold text-black md:text-5xl'>{post.title}</h1>
-        {post.excerpt ? <p className='mt-4 text-lg text-slate-700'>{post.excerpt}</p> : null}
+    <main className='mx-auto w-full max-w-4xl px-6 pb-20 pt-16 md:px-12'>
+      <header className='mb-10'>
+        <h1 className='text-[32px] font-bold leading-tight text-[#0066b2] md:text-[44px]'>{post.title}</h1>
+        <p className='mt-4 text-[15px] font-medium text-gray-500'>{formatPublishedAt(post.publishedAt)}</p>
       </header>
 
-      <div id='adsense-article-top' className='mb-8 min-h-24 w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500'>
-        AdSense Slot: Top Inline
+      {post.mainImage?.url ? (
+        <figure className='mb-10'>
+          <img
+            src={post.mainImage.url}
+            alt={post.mainImage.alt || post.title}
+            className='w-full rounded-3xl object-cover'
+          />
+          {post.mainImage.caption ? <figcaption className='mt-3 text-sm text-slate-600'>{post.mainImage.caption}</figcaption> : null}
+        </figure>
+      ) : null}
+
+      {post.excerpt ? (
+        <div className='mb-10 rounded-2xl bg-[#f0f9ff] p-6 md:p-8'>
+          <p className='text-[17px] leading-relaxed text-[#0066b2]'>{post.excerpt}</p>
+        </div>
+      ) : null}
+
+      <div className='mb-10 min-h-24 w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-xs uppercase tracking-widest text-slate-400'>
+        Advertisement
       </div>
 
-      <article className='prose prose-slate max-w-none text-black'>
+      <article className='prose-lg max-w-none font-sans antialiased'>
         <PortableText value={post.body} components={portableTextComponents} />
       </article>
 
-      <div id='adsense-article-middle' className='my-8 min-h-24 w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500'>
-        AdSense Slot: Middle Inline
-      </div>
-
-      <div id='adsense-article-bottom' className='mt-8 min-h-24 w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500'>
-        AdSense Slot: Bottom Inline
+      <div className='mt-12 min-h-24 w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-xs uppercase tracking-widest text-slate-400'>
+        Advertisement
       </div>
     </main>
   )

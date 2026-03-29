@@ -8,8 +8,23 @@ export type NewsPostListItem = {
   publishedAt: string
 }
 
+export type NewsImage = {
+  url?: string
+  alt?: string
+  caption?: string
+}
+
+export type NewsBodyImageBlock = {
+  _type: 'image'
+  _key: string
+  url?: string
+  alt?: string
+  caption?: string
+}
+
 export type NewsPost = NewsPostListItem & {
-  body: PortableTextBlock[]
+  mainImage?: NewsImage
+  body: Array<PortableTextBlock | NewsBodyImageBlock>
 }
 
 export type PortfolioVideo = {
