@@ -49,9 +49,39 @@ export const portfolioVideosQuery = groq`
   *[_type == "portfolio"] | order(publishedAt desc) {
     _id,
     title,
+    "slug": slug.current,
+    caption,
     youtubeUrl,
     publishedAt,
-    "thumbnailUrl": thumbnail.asset->url
+    "thumbnailUrl": thumbnail.asset->url,
+    "thumbnailAlt": thumbnail.alt
+  }
+`
+
+export const portfolioBySlugQuery = groq`
+  *[_type == "portfolio" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    caption,
+    youtubeUrl,
+    publishedAt,
+    "mainImage": {
+      "url": thumbnail.asset->url,
+      "alt": thumbnail.alt
+    },
+    "images": images[]{
+      _key,
+      "url": asset->url,
+      alt,
+      caption
+    }
+  }
+`
+
+export const portfolioSlugsQuery = groq`
+  *[_type == "portfolio" && defined(slug.current)] {
+    "slug": slug.current
   }
 `
 

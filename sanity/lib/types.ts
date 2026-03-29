@@ -38,9 +38,33 @@ export type NewsPost = NewsPostListItem & {
 export type PortfolioVideo = {
   _id: string
   title: string
+  slug?: string
+  caption?: string
   youtubeUrl: string
   publishedAt: string
   thumbnailUrl?: string
+  thumbnailAlt?: string
+}
+
+export type PortfolioImage = {
+  _key: string
+  url?: string
+  alt?: string
+  caption?: string
+}
+
+export type PortfolioItem = {
+  _id: string
+  title: string
+  slug: string
+  caption?: string
+  youtubeUrl: string
+  publishedAt: string
+  mainImage?: {
+    url?: string
+    alt?: string
+  }
+  images?: PortfolioImage[]
 }
 
 export type TestMediaItem = {
