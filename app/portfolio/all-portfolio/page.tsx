@@ -110,13 +110,15 @@ export default function AllPortfolioPage() {
             <Link
               key={video._id}
               href={getPortfolioHref(video)}
-              className='group block w-[384px] transition-all duration-300 hover:-translate-y-1'
+              className='group block w-96 flex-none transition-all duration-300 hover:-translate-y-1'
             >
-              <div className='relative w-[384px] h-[216px] overflow-hidden rounded-3xl rounded-br-[68px] shadow-sm'>
+              <div className='relative aspect-video w-96 overflow-hidden rounded-3xl rounded-br-[48px] shadow-sm'>
                 {video.thumbnailUrl ? (
                   <img
                     src={video.thumbnailUrl}
                     alt={video.thumbnailAlt || video.title}
+                    width={384}
+                    height={216}
                     className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
                     loading='lazy'
                   />
