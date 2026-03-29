@@ -1,3 +1,6 @@
+"use client"
+
+import {useEffect, useState} from 'react'
 import Link from 'next/link'
 
 import {client} from '@/sanity/lib/client'
@@ -12,8 +15,35 @@ function formatPublishedAt(value: string): string {
   })
 }
 
-export default async function NewsPage() {
-  const posts = await client.fetch<NewsPostListItem[]>(newsroomPostsQuery)
+export default function NewsPage() {
+  const [posts, setPosts] = useState<NewsPostListItem[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false)
+
+  useEffect(() => {
+    let isMounted = true
+
+    const loadPosts = async () => {
+      try {
+        const result = await client.fetch<NewsPostListItem[]>(newsroomPostsQuery)
+        if (!isMounted) return
+        setPosts(result)
+        setHasError(false)
+      } catch {
+        if (!isMounted) return
+        setHasError(true)
+      } finally {
+        if (!isMounted) return
+        setIsLoading(false)
+      }
+    }
+
+    void loadPosts()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   return (
     <main className='mx-auto w-full max-w-5xl px-4 pb-20 pt-32 md:px-8'>
@@ -22,7 +52,15 @@ export default async function NewsPage() {
         <h1 className='mt-3 text-4xl font-semibold text-black md:text-5xl'>Company Updates & Insights</h1>
       </header>
 
-      {posts.length === 0 ? (
+      {isLoading ? (
+        <div className='rounded-2xl border border-slate-200 bg-slate-50 px-6 py-10 text-center text-slate-600'>
+          Loading latest news...
+        </div>
+      ) : hasError ? (
+        <div className='rounded-2xl border border-rose-200 bg-rose-50 px-6 py-10 text-center text-rose-700'>
+          Failed to load latest news. Please refresh this page.
+        </div>
+      ) : posts.length === 0 ? (
         <div className='rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center text-slate-600'>
           No news published yet.
         </div>
