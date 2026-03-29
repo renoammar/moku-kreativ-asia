@@ -1,10 +1,17 @@
 import type {PortableTextBlock} from 'sanity'
 
+export type NewsCategory =
+  | 'corporate'
+  | 'partnerships'
+  | 'activities'
+  | 'thought-leadership'
+
 export type NewsPostListItem = {
   _id: string
   title: string
   slug: string
   excerpt?: string
+  category?: NewsCategory
   publishedAt: string
   mainImage?: NewsImage
 }

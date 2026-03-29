@@ -7,6 +7,16 @@ import { client } from '@/sanity/lib/client'
 import { newsroomPostsQuery } from '@/sanity/lib/queries'
 import type { NewsPostListItem } from '@/sanity/lib/types'
 
+const categoryOptions = [
+  { label: 'All Press Releases', value: 'all' },
+  { label: 'Corporate', value: 'corporate' },
+  { label: 'Partnerships', value: 'partnerships' },
+  { label: 'Activities', value: 'activities' },
+  { label: 'Thought Leadership', value: 'thought-leadership' },
+] as const
+
+type CategoryFilter = (typeof categoryOptions)[number]['value']
+
 function formatPublishedAt(value: string): string {
   // Matching the image format: "Feb 25, 2026"
   return new Date(value).toLocaleDateString('en-US', {
@@ -21,6 +31,12 @@ export default function NewsPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
   const [visibleCount, setVisibleCount] = useState(9)
+  const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all')
+
+  const filteredPosts =
+    activeCategory === 'all'
+      ? posts
+      : posts.filter((post) => post.category === activeCategory)
 
   useEffect(() => {
     let isMounted = true
@@ -51,10 +67,21 @@ export default function NewsPage() {
         
         {/* Filter Pills (Visual only, as seen in image) */}
         <div className='mt-8 flex flex-wrap justify-center gap-3'>
-          <button className='rounded-full bg-[#003366] px-6 py-2 text-sm font-medium text-white'>All Press Releases</button>
-          {['Corporate', 'Partnerships', 'Activities', 'Thought Leadership'].map((cat) => (
-            <button key={cat} className='rounded-full border border-slate-300 px-6 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50'>
-              {cat}
+          {categoryOptions.map((category) => (
+            <button
+              key={category.value}
+              className={
+                activeCategory === category.value
+                  ? 'rounded-full bg-[#003366] px-6 py-2 text-sm font-medium text-white'
+                  : 'rounded-full border border-slate-300 px-6 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50'
+              }
+              onClick={() => {
+                setActiveCategory(category.value)
+                setVisibleCount(9)
+              }}
+              type='button'
+            >
+              {category.label}
             </button>
           ))}
           <button className='ml-2 p-2 text-slate-500'>
@@ -70,7 +97,7 @@ export default function NewsPage() {
         <div className='py-20 text-center text-rose-600'>Failed to load posts.</div>
       ) : (
         <div className='grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3'>
-          {posts.slice(0, visibleCount).map((post) => (
+          {filteredPosts.slice(0, visibleCount).map((post) => (
             <article key={post._id} className='group flex flex-col'>
               {/* Image Container */}
               <div className='relative mb-4 aspect-16/10 overflow-hidden rounded-3xl rounded-br-[68px]'>
@@ -78,7 +105,7 @@ export default function NewsPage() {
                   <img 
                     src={post.mainImage.url}
                     alt={post.mainImage.alt || post.title}
-                    className='h-full w-full object-cover transition-transform duration -500 group-hover:scale-105'
+                    className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
                   />
                 ) : (
                   <div className='h-full w-full bg-slate-200' />
@@ -101,12 +128,18 @@ export default function NewsPage() {
         </div>
       )}
 
+      {!isLoading && !hasError && filteredPosts.length === 0 ? (
+        <div className='mt-12 py-10 text-center text-slate-500'>
+          No posts found in this category.
+        </div>
+      ) : null}
+
       {/* Load More Button */}
-      {posts.length > 9 && visibleCount < posts.length ? (
+      {filteredPosts.length > 9 && visibleCount < filteredPosts.length ? (
         <div className='mt-16 text-center'>
           <button
             className='rounded-full bg-[#E0F4FF] px-12 py-3 text-sm font-bold text-[#00AEEF] transition-colors hover:bg-[#D0E7F5]'
-            onClick={() => setVisibleCount((prev) => Math.min(prev + 9, posts.length))}
+            onClick={() => setVisibleCount((prev) => Math.min(prev + 9, filteredPosts.length))}
             type='button'
           >
             Load more

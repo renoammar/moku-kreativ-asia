@@ -6,6 +6,7 @@ export const newsroomPostsQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
+    category,
     publishedAt,
     "mainImage": {
       "url": mainImage.asset->url,
@@ -21,6 +22,7 @@ export const newsroomPostBySlugQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
+    category,
     publishedAt,
     "mainImage": {
       "url": mainImage.asset->url,

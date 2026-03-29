@@ -37,6 +37,22 @@ export const postType = defineType({
       description: 'Short summary shown on the Newsroom listing.',
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Corporate', value: 'corporate'},
+          {title: 'Partnerships', value: 'partnerships'},
+          {title: 'Activities', value: 'activities'},
+          {title: 'Thought Leadership', value: 'thought-leadership'},
+        ],
+        layout: 'dropdown',
+      },
+      validation: (Rule) => Rule.required(),
+      initialValue: 'corporate',
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
