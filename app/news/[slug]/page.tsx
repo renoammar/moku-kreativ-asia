@@ -1,6 +1,8 @@
 import {PortableText, type PortableTextReactComponents} from '@portabletext/react'
 import type {Metadata} from 'next'
+import Link from 'next/link'
 import {notFound} from 'next/navigation'
+import {FiArrowLeft} from 'react-icons/fi'
 
 import {client} from '@/sanity/lib/client'
 import {newsroomPostBySlugQuery, newsroomPostSlugsQuery} from '@/sanity/lib/queries'
@@ -86,7 +88,14 @@ export default async function NewsArticlePage({params}: NewsArticlePageProps) {
   }
 
   return (
-    <main className='mx-auto w-full max-w-4xl px-6 pb-20 pt-16 md:px-12'>
+    <main className='mx-auto mt-16 w-full max-w-4xl px-6 pb-20 pt-16 md:px-12'>
+      <div className='mb-8'>
+        <Link href='/news' className='inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-[#003b73] hover:text-[#002b55]'>
+          <FiArrowLeft aria-hidden='true' className='h-4 w-4' />
+          <span>Back to all press releases</span>
+        </Link>
+      </div>
+
       <header className='mb-10'>
         <h1 className='text-[32px] font-bold leading-tight text-[#0066b2] md:text-[44px]'>{post.title}</h1>
         <p className='mt-4 text-[15px] font-medium text-gray-500'>{formatPublishedAt(post.publishedAt)}</p>

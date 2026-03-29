@@ -1,16 +1,17 @@
 "use client"
 
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-import {client} from '@/sanity/lib/client'
-import {newsroomPostsQuery} from '@/sanity/lib/queries'
-import type {NewsPostListItem} from '@/sanity/lib/types'
+import { client } from '@/sanity/lib/client'
+import { newsroomPostsQuery } from '@/sanity/lib/queries'
+import type { NewsPostListItem } from '@/sanity/lib/types'
 
 function formatPublishedAt(value: string): string {
-  return new Date(value).toLocaleDateString('id-ID', {
+  // Matching the image format: "Feb 25, 2026"
+  return new Date(value).toLocaleDateString('en-US', {
     day: '2-digit',
-    month: 'long',
+    month: 'short',
     year: 'numeric',
   })
 }
@@ -19,15 +20,16 @@ export default function NewsPage() {
   const [posts, setPosts] = useState<NewsPostListItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(9)
 
   useEffect(() => {
     let isMounted = true
-
     const loadPosts = async () => {
       try {
         const result = await client.fetch<NewsPostListItem[]>(newsroomPostsQuery)
         if (!isMounted) return
         setPosts(result)
+        setVisibleCount(9)
         setHasError(false)
       } catch {
         if (!isMounted) return
@@ -37,51 +39,80 @@ export default function NewsPage() {
         setIsLoading(false)
       }
     }
-
     void loadPosts()
-
-    return () => {
-      isMounted = false
-    }
+    return () => { isMounted = false }
   }, [])
 
   return (
-    <main className='mx-auto w-full max-w-5xl px-4 pb-20 pt-32 md:px-8'>
-      <header className='mb-10 border-b border-slate-200 pb-6'>
-        <p className='text-sm font-semibold uppercase tracking-[0.2em] text-slate-500'>Newsroom</p>
-        <h1 className='mt-3 text-4xl font-semibold text-black md:text-5xl'>Company Updates & Insights</h1>
+    <main className='mx-auto w-full max-w-7xl px-6 pb-20 pt-20'>
+      {/* Header Section */}
+      <header className='mb-12 text-center'>
+        <h1 className='text-6xl font-bold text-[#D0E7F5] opacity-50'>Press</h1>
+        
+        {/* Filter Pills (Visual only, as seen in image) */}
+        <div className='mt-8 flex flex-wrap justify-center gap-3'>
+          <button className='rounded-full bg-[#003366] px-6 py-2 text-sm font-medium text-white'>All Press Releases</button>
+          {['Corporate', 'Partnerships', 'Activities', 'Thought Leadership'].map((cat) => (
+            <button key={cat} className='rounded-full border border-slate-300 px-6 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50'>
+              {cat}
+            </button>
+          ))}
+          <button className='ml-2 p-2 text-slate-500'>
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </button>
+        </div>
       </header>
 
+      {/* Grid Content */}
       {isLoading ? (
-        <div className='rounded-2xl border border-slate-200 bg-slate-50 px-6 py-10 text-center text-slate-600'>
-          Loading latest news...
-        </div>
+        <div className='py-20 text-center text-slate-500'>Loading...</div>
       ) : hasError ? (
-        <div className='rounded-2xl border border-rose-200 bg-rose-50 px-6 py-10 text-center text-rose-700'>
-          Failed to load latest news. Please refresh this page.
-        </div>
-      ) : posts.length === 0 ? (
-        <div className='rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center text-slate-600'>
-          No news published yet.
-        </div>
+        <div className='py-20 text-center text-rose-600'>Failed to load posts.</div>
       ) : (
-        <section className='grid gap-6'>
-          {posts.map((post) => (
-            <article key={post._id} className='rounded-2xl border border-slate-200 bg-white p-6 transition-shadow duration-200 hover:shadow-sm'>
-              <p className='text-sm text-slate-500'>{formatPublishedAt(post.publishedAt)}</p>
-              <h2 className='mt-2 text-2xl font-semibold text-black'>
-                <Link href={`/news/${post.slug}`} className='hover:text-slate-700'>
-                  {post.title}
-                </Link>
-              </h2>
-              {post.excerpt ? <p className='mt-3 text-slate-700'>{post.excerpt}</p> : null}
-              <Link href={`/news/${post.slug}`} className='mt-4 inline-block text-sm font-semibold uppercase tracking-wide text-black'>
-                Read Article
-              </Link>
+        <div className='grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3'>
+          {posts.slice(0, visibleCount).map((post) => (
+            <article key={post._id} className='group flex flex-col'>
+              {/* Image Container */}
+              <div className='relative mb-4 aspect-16/10 overflow-hidden rounded-3xl'>
+                {post.mainImage?.url ? (
+                  <img 
+                    src={post.mainImage.url}
+                    alt={post.mainImage.alt || post.title}
+                    className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
+                  />
+                ) : (
+                  <div className='h-full w-full bg-slate-200' />
+                )}
+              </div>
+
+              {/* Meta & Title */}
+              <div className='flex grow flex-col'>
+                <p className='text-[13px] font-medium text-slate-400'>
+                  {formatPublishedAt(post.publishedAt)}
+                </p>
+                <h2 className='mt-2 text-[18px] font-bold leading-snug text-[#003366] line-clamp-3 hover:underline'>
+                  <Link href={`/news/${post.slug}`}>
+                    {post.title}
+                  </Link>
+                </h2>
+              </div>
             </article>
           ))}
-        </section>
+        </div>
       )}
+
+      {/* Load More Button */}
+      {posts.length > 9 && visibleCount < posts.length ? (
+        <div className='mt-16 text-center'>
+          <button
+            className='rounded-full bg-[#E0F4FF] px-12 py-3 text-sm font-bold text-[#00AEEF] transition-colors hover:bg-[#D0E7F5]'
+            onClick={() => setVisibleCount((prev) => Math.min(prev + 9, posts.length))}
+            type='button'
+          >
+            Load more
+          </button>
+        </div>
+      ) : null}
     </main>
   )
 }

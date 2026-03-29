@@ -6,6 +6,7 @@ export type NewsPostListItem = {
   slug: string
   excerpt?: string
   publishedAt: string
+  mainImage?: NewsImage
 }
 
 export type NewsImage = {

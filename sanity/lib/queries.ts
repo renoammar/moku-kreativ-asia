@@ -6,7 +6,12 @@ export const newsroomPostsQuery = groq`
     title,
     "slug": slug.current,
     excerpt,
-    publishedAt
+    publishedAt,
+    "mainImage": {
+      "url": mainImage.asset->url,
+      "alt": mainImage.alt,
+      "caption": mainImage.caption
+    }
   }
 `
 
