@@ -21,6 +21,12 @@ export const newsroomPostBySlugQuery = groq`
   }
 `
 
+export const newsroomPostSlugsQuery = groq`
+  *[_type == "post" && defined(slug.current)] {
+    "slug": slug.current
+  }
+`
+
 export const portfolioVideosQuery = groq`
   *[_type == "portfolio"] | order(publishedAt desc) {
     _id,

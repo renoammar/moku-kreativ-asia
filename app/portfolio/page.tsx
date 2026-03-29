@@ -5,7 +5,7 @@ import type {PortfolioVideo} from '@/sanity/lib/types'
 import LiteYoutubeCard from '../components/portfolio/LiteYoutubeCard'
 
 export default async function PortfolioPage() {
-  const videos = await client.fetch<PortfolioVideo[]>(portfolioVideosQuery, {}, {cache: 'no-store'})
+  const videos = await client.fetch<PortfolioVideo[]>(portfolioVideosQuery)
 
   return (
     <main className='mx-auto w-full max-w-6xl px-4 pb-20 pt-32 md:px-8'>

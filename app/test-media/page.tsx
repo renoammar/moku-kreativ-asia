@@ -13,7 +13,7 @@ function formatPublishedAt(value: string): string {
 }
 
 export default async function TestMediaPage() {
-  const items = await client.fetch<TestMediaItem[]>(testMediaItemsQuery, {}, {cache: 'no-store'})
+  const items = await client.fetch<TestMediaItem[]>(testMediaItemsQuery)
 
   return (
     <main className='mx-auto w-full max-w-5xl px-4 pb-20 pt-32 md:px-8'>

@@ -13,7 +13,7 @@ function formatPublishedAt(value: string): string {
 }
 
 export default async function NewsPage() {
-  const posts = await client.fetch<NewsPostListItem[]>(newsroomPostsQuery, {}, {cache: 'no-store'})
+  const posts = await client.fetch<NewsPostListItem[]>(newsroomPostsQuery)
 
   return (
     <main className='mx-auto w-full max-w-5xl px-4 pb-20 pt-32 md:px-8'>

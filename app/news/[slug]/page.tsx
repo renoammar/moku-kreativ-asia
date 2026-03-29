@@ -3,7 +3,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
 import {client} from '@/sanity/lib/client'
-import {newsroomPostBySlugQuery} from '@/sanity/lib/queries'
+import {newsroomPostBySlugQuery, newsroomPostSlugsQuery} from '@/sanity/lib/queries'
 import type {NewsPost} from '@/sanity/lib/types'
 
 type NewsArticlePageProps = {
@@ -29,7 +29,12 @@ function formatPublishedAt(value: string): string {
 }
 
 async function getPostBySlug(slug: string): Promise<NewsPost | null> {
-  return client.fetch<NewsPost | null>(newsroomPostBySlugQuery, {slug}, {cache: 'no-store'})
+  return client.fetch<NewsPost | null>(newsroomPostBySlugQuery, {slug})
+}
+
+export async function generateStaticParams(): Promise<Array<{slug: string}>> {
+  const slugs = await client.fetch<Array<{slug: string}>>(newsroomPostSlugsQuery)
+  return slugs
 }
 
 export async function generateMetadata({params}: NewsArticlePageProps): Promise<Metadata> {
