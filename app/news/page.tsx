@@ -73,12 +73,12 @@ export default function NewsPage() {
           {posts.slice(0, visibleCount).map((post) => (
             <article key={post._id} className='group flex flex-col'>
               {/* Image Container */}
-              <div className='relative mb-4 aspect-16/10 overflow-hidden rounded-3xl'>
+              <div className='relative mb-4 aspect-16/10 overflow-hidden rounded-3xl rounded-br-[68px]'>
                 {post.mainImage?.url ? (
                   <img 
                     src={post.mainImage.url}
                     alt={post.mainImage.alt || post.title}
-                    className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
+                    className='h-full w-full object-cover transition-transform duration -500 group-hover:scale-105'
                   />
                 ) : (
                   <div className='h-full w-full bg-slate-200' />
