@@ -1,13 +1,13 @@
 'use client'
 import { AnimatePresence, motion } from 'motion/react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function Navbar() {
   const navItems = [
     { label: 'BERANDA', href: '/' },
-    { label: 'NEWSROOM', href: '/news' },
-    { label: 'PORTFOLIO', href: '/portfolio' },
+    // { label: 'NEWSROOM', href: '/news' },
+    // { label: 'PORTFOLIO', href: '/portfolio' },
     {
       label: 'REPORTING SOLUTION',
       children: [
@@ -21,12 +21,44 @@ function Navbar() {
     { label: 'EVENT SOLUTION', href: '/event' },
     { label: '3D DESIGN', href: '#' },
     { label: 'CONTACT', href: '#' },
+    {label:"moku studio",href:"/studio-moku-asia"}
   ]
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isReportingOpen, setIsReportingOpen] = useState(false)
   const [isMobileReportingOpen, setIsMobileReportingOpen] = useState(false)
   const [isMobileClosing, setIsMobileClosing] = useState(false)
+  const desktopReportingRef = useRef<HTMLLIElement>(null)
+
+  useEffect(() => {
+    if (!isReportingOpen) {
+      return
+    }
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null
+
+      if (desktopReportingRef.current && target && !desktopReportingRef.current.contains(target)) {
+        setIsReportingOpen(false)
+      }
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsReportingOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown)
+    document.addEventListener('touchstart', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown)
+      document.removeEventListener('touchstart', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isReportingOpen])
 
   const toggleMobileMenu = () => {
     setIsMenuOpen((prev) => {
@@ -53,7 +85,11 @@ function Navbar() {
 
         <ul className='hidden md:flex items-center gap-8 text-slate-700 text-sm font-medium tracking-wide'>
           {navItems.map((item) => (
-            <li key={item.label} className='relative cursor-pointer'>
+            <li
+              key={item.label}
+              ref={item.children ? desktopReportingRef : undefined}
+              className='relative cursor-pointer'
+            >
               {item.children ? (
                 <>
                   <button
