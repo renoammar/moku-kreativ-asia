@@ -60,7 +60,7 @@ export default function PortfolioSection({ embedded = false, className = '' }: P
     : `relative mx-auto mt-16 min-h-screen w-full max-w-7xl px-6 pb-20 pt-20 ${className}`
 
   return (
-    <section className={wrapperClasses}>
+    <section className={`${wrapperClasses} scroll-mt-28`} id='portofolio-section'>
       <header className='flex w-full items-center justify-between'>
         <h2 className='mt-3 text-4xl font-bold text-[#003366] md:text-5xl'>Portfolio</h2>
         <div className='text-center'>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { MdArrowForward, MdArrowBack } from 'react-icons/md';
 
 export interface ServiceItem {
@@ -14,46 +14,15 @@ export interface ServiceItem {
 interface SolutionServicesSectionProps {
   heading: string;
   services: ServiceItem[];
+  topSpacingClassName?: string;
 }
 
 export default function SolutionServicesSection({
   heading,
   services,
+  topSpacingClassName = '',
 }: SolutionServicesSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [topOffset, setTopOffset] = useState(0);
-  const sectionRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const updateTopOffset = () => {
-      const sectionEl = sectionRef.current;
-      if (!sectionEl) {
-        return;
-      }
-
-      const navbarEl = document.getElementById('site-navbar');
-      if (!navbarEl) {
-        setTopOffset(0);
-        return;
-      }
-
-      const sectionTop = sectionEl.getBoundingClientRect().top;
-      const navbarBottom = navbarEl.getBoundingClientRect().bottom;
-
-      // Add offset only when the section starts inside the navbar collision zone.
-      const neededOffset = Math.max(0, Math.ceil(navbarBottom + 12 - sectionTop));
-      setTopOffset(neededOffset);
-    };
-
-    updateTopOffset();
-    window.addEventListener('resize', updateTopOffset);
-    window.addEventListener('orientationchange', updateTopOffset);
-
-    return () => {
-      window.removeEventListener('resize', updateTopOffset);
-      window.removeEventListener('orientationchange', updateTopOffset);
-    };
-  }, []);
 
   if (services.length === 0) {
     return null;
@@ -71,13 +40,9 @@ export default function SolutionServicesSection({
 
   return (
     <section
-      ref={sectionRef}
       className="min-h-screen bg-[#0D3C74] bg-[linear-gradient(180deg,#125FF9_0%,#0D3C74_42%,#082A55_100%)] p-6 text-white font-sans overflow-x-hidden flex items-center md:p-16"
     >
-      <div
-        className="max-w-7xl mx-auto w-full"
-        style={{ marginTop: topOffset > 0 ? `${topOffset}px` : undefined }}
-      >
+      <div className={`max-w-7xl mx-auto w-full ${topSpacingClassName}`}>
         <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">{heading}</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

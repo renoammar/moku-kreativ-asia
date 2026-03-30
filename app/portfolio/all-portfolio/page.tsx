@@ -84,7 +84,7 @@ export default function AllPortfolioPage() {
         </div>
 
         <Link
-          href='/portfolio'
+          href='/event#portofolio-section'
           className='inline-flex items-center gap-2 self-start rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100'
         >
           Back to portfolio

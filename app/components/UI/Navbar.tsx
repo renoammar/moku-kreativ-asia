@@ -6,8 +6,8 @@ import { useState } from 'react'
 function Navbar() {
   const navItems = [
     { label: 'BERANDA', href: '/' },
-    { label: 'NEWSROOM', href: '/news' },
-    { label: 'PORTFOLIO', href: '/portfolio' },
+    // { label: 'NEWSROOM', href: '/news' },
+    // { label: 'PORTFOLIO', href: '/portfolio' },
     {
       label: 'REPORTING SOLUTION',
       children: [

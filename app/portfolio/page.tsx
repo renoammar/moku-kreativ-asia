@@ -1,5 +1,11 @@
-import PortfolioSection from '../components/portfolio/PortfolioSection'
+"use client"
+
+import { useEffect } from 'react'
 
 export default function PortfolioPage() {
-  return <PortfolioSection />
+  useEffect(() => {
+    window.location.replace('/event#portofolio-section')
+  }, [])
+
+  return null
 }

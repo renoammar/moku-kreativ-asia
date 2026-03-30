@@ -35,7 +35,7 @@ const eventServices: ServiceItem[] = [
 ];
 
 function EventServices() {
-  return <SolutionServicesSection heading="Event Services" services={eventServices} />;
+  return <SolutionServicesSection heading="Event Services" services={eventServices} topSpacingClassName="pt-16" />;
 }
 
 export default EventServices;

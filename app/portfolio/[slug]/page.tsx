@@ -70,7 +70,7 @@ export default async function PortfolioDetailPage({params}: PortfolioDetailPageP
   return (
     <main className='mx-auto mt-16 w-full max-w-5xl px-6 pb-20 pt-16 md:px-12'>
       <div className='mb-8'>
-        <Link href='/portfolio' className='inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-[#003b73] hover:text-[#002b55]'>
+        <Link href='/portfolio/all-portfolio' className='inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-[#003b73] hover:text-[#002b55]'>
           <FiArrowLeft aria-hidden='true' className='h-4 w-4' />
           <span>Back to all portfolio</span>
         </Link>
