@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
+import {FiArrowLeft} from 'react-icons/fi'
 
 import {client} from '@/sanity/lib/client'
 import {portfolioVideosQuery} from '@/sanity/lib/queries'
@@ -79,16 +80,15 @@ export default function AllPortfolioPage() {
     <main className='mx-auto min-h-screen w-full max-w-7xl px-4 pb-20 pt-24 md:px-8'>
       <header className='mb-10 flex flex-col gap-5 border-b border-slate-200 pb-7 md:flex-row md:items-end md:justify-between'>
         <div>
-          <p className='text-xs font-bold uppercase tracking-[0.24em] text-slate-500'>Portfolio Wall</p>
-          <h1 className='mt-3 text-4xl font-semibold text-slate-900 md:text-5xl'>All Portfolio</h1>
+          <h1 className='text-6xl font-bold text-[#D0E7F5]'>All Portfolio</h1>
         </div>
 
         <Link
           href='/event#portofolio-section'
           className='inline-flex items-center gap-2 self-start rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100'
         >
+          <FiArrowLeft aria-hidden='true' className='h-4 w-4' />
           Back to portfolio
-          <span aria-hidden='true'>&larr;</span>
         </Link>
       </header>
 

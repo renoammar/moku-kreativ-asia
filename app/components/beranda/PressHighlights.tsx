@@ -36,7 +36,7 @@ function PressHighlights() {
   }, [])
 
   return (
-    <section className=' px-4 py-14 md:px-8 md:py-20'>
+    <section className=' px-4 py-14 md:px-8 md:py-20' id='press-highlight'>
       <div className='mx-auto w-full max-w-6xl'>
         <div className='flex flex-col gap-4 md:flex-row md:items-center md:justify-between'>
           <h2 className='text-4xl font-semibold text-[#123A66] md:text-[46px]'>Press</h2>
