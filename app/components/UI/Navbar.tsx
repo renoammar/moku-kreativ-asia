@@ -15,7 +15,7 @@ function Navbar() {
         { label: 'Annual Report', href: '/annual-report' },
         { label: 'Sustainability Report', href: '/sustainability-report' },
         { label: 'Assurance', href: '/assurance' },
-        { label: 'Company Profile', href: '#' },
+        { label: 'Company Profile', href: '/company-profile' },
       ],
     },
     { label: 'EVENT SOLUTION', href: '/event' },
