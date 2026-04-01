@@ -5,7 +5,7 @@ function Footer() {
 	return (
 		<footer className='bg-[#081833] px-4 py-14 text-white md:px-8 md:py-16'>
 			<div className='mx-auto w-full max-w-6xl'>
-				<div className='grid gap-10 md:grid-cols-4 md:gap-10'>
+				<div className='flex flex-col gap-10 md:flex-row md:justify-between'>
 					<div>
 						<h3 className='text-3xl font-bold'>Moku Asia</h3>
 						<p className='mt-4 text-lg leading-8 text-slate-200'>
@@ -34,10 +34,10 @@ function Footer() {
 						</div>
 					</div>
 
-					<div>
+					<div className=''>
 						<h4 className='text-[28px] font-semibold'>Contact Us</h4>
 
-						<div className='mt-5 space-y-6 text-slate-200'>
+						<div className='mt-5 flex flex-col gap-6 text-slate-200 md:flex-row md:flex-wrap md:gap-10'>
 							<div>
 								<p className='flex items-center gap-2 text-xl font-semibold text-white'>
 									<HiOutlineLocationMarker className='h-5 w-5' />
@@ -70,37 +70,13 @@ function Footer() {
 					</div>
 
 					<div>
-						<h4 className='text-[28px] font-semibold'>Company</h4>
+						<h4 className='text-[28px] font-semibold'>Services</h4>
 						<ul className='mt-5 space-y-3 text-xl text-slate-200'>
-							<li><a href='#' className='hover:text-sky-300'>Tentang Kami</a></li>
-							<li><a href='#' className='hover:text-sky-300'>Tim Kami</a></li>
-							<li><a href='#' className='hover:text-sky-300'>Kenapa Kami?</a></li>
-							<li><a href='#' className='hover:text-sky-300'>Visi &amp; Misi</a></li>
-							<li><a href='#' className='hover:text-sky-300'>Karir</a></li>
-							<li><a href='#' className='hover:text-sky-300'>Contact Us</a></li>
+							<li><a href='/annual-report' className='hover:text-sky-300'>Annual Report</a></li>
+							<li><a href='/sustainability-report' className='hover:text-sky-300'>Sustainability Report</a></li>
+							<li><a href='/assurance' className='hover:text-sky-300'>Assurance</a></li>
+							<li><a href='/event' className='hover:text-sky-300'>Penyelenggaraan Event</a></li>
 						</ul>
-					</div>
-
-					<div>
-						<h4 className='text-[28px] font-semibold'>Legal</h4>
-						<ul className='mt-5 space-y-3 text-xl text-slate-200'>
-							<li><a href='#' className='hover:text-sky-300'>FAQ</a></li>
-						</ul>
-
-						<h4 className='mt-10 text-[28px] font-semibold'>Newsletter</h4>
-						<form className='mt-4 space-y-3'>
-							<input
-								type='email'
-								placeholder='Your email address'
-								className='h-12 w-full rounded-xl border border-white/15 bg-white/8 px-4 text-lg text-white placeholder:text-slate-300 focus:border-sky-300 focus:outline-none'
-							/>
-							<button
-								type='submit'
-								className='h-12 w-full rounded-xl bg-[#ea2127] text-lg font-semibold text-white transition-colors duration-300 hover:bg-[#d71920]'
-							>
-								Subscribe
-							</button>
-						</form>
 					</div>
 				</div>
 

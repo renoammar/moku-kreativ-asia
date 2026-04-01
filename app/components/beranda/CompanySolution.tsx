@@ -1,16 +1,17 @@
 import React from 'react'
+import Link from 'next/link'
 import InternationalLicenseBanner from './InternationalLicenseBanner'
 
 const companyReportingItems = [
-  'Annual Report',
-  'Assurance',
-  'Sustainability Report',
-  'Company Profile',
+  { label: 'Annual Report', href: '/annual-report' },
+  { label: 'Assurance', href: '/assurance' },
+  { label: 'Sustainability Report', href: '/sustainability-report' },
+  { label: 'Company Profile', href: '/company-profile' },
 ]
 
 const miceEventItems = [
-  'Event Concept, Planning, Execution, and Creative Development',
-  'Audience Engagement Strategy',
+  { label: 'Event Concept, Planning, Execution, and Creative Development', href: '/event' },
+  { label: 'Audience Engagement Strategy', href: '/event' },
 ]
 
 function CompanySolution() {
@@ -37,19 +38,20 @@ function CompanySolution() {
           </div>
         </div>
 
-        <div id='our-solutions-grid' className='mt-16 grid gap-8 md:grid-cols-[0.85fr_1.65fr] md:items-start md:gap-10'>
-          <div>
-            <h3 className='text-4xl font-bold leading-tight text-[#002F5D] md:text-5xl'>
-              <span className='block'>Our</span>
-              <span className='block tracking-[0.08em] md:tracking-widest'>Solution</span>
-            </h3>
-            <p className='mt-4 max-w-xs text-base text-slate-700 md:text-lg'>Explore how MOKU ASIA builds trust and creates impact.</p>
+        <div id='our-solutions-grid' className='mt-16 flex flex-col gap-8'>
+          <div className='flex justify-center items-center w-full flex-col'>
+            <h1 className='text-5xl font-bold leading-tight text-[#002F5D] md:text-6xl text-center'>
+                Our Solutions
+            </h1>
+            <p className='mt-4 max-w-xs text-lg text-slate-700 md:text-xl text-center'>
+              Explore how MOKU ASIA builds trust and creates impact.
+            </p>
           </div>
 
           <div
             className='relative overflow-visible rounded-[28px] bg-linear-to-br from-blue-600 via-blue-700 to-blue-900 p-6 text-white md:p-8'
             style={{
-              backgroundImage: "linear-gradient(rgba(6, 23, 58, 0.45), rgba(6, 23, 58, 0.45)), url('/images/card_background.png')",
+              backgroundImage: "linear-gradient(rgba(6, 23, 58, 0.45), rgba(6, 23, 58, 0.45)), url('/images/card_background.jpg')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -60,11 +62,13 @@ function CompanySolution() {
                 <p className='mt-1.5 text-lg text-white/95 md:text-[26px] md:leading-[1.35]'>Comprehensive Corporate Reporting Services</p>
                 <ul className='mt-5 space-y-2.5'>
                   {companyReportingItems.map((item) => (
-                    <li key={item} className='flex items-start gap-3 text-[22px] leading-[1.35]'>
+                    <li key={item.label} className='flex items-start gap-3 text-[22px] leading-[1.35]'>
                       <span className='mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-400 text-sm font-bold text-white'>
                         ✓
                       </span>
-                      <span>{item}</span>
+                      <Link href={item.href} className='underline-offset-4 transition-colors duration-200 hover:text-sky-200 hover:underline'>
+                        {item.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -75,11 +79,13 @@ function CompanySolution() {
                 <p className='mt-1.5 text-lg text-white/95 md:text-[26px] md:leading-[1.35]'>Integrated Event and Marketing Capabilities</p>
                 <ul className='mt-5 space-y-2.5'>
                   {miceEventItems.map((item) => (
-                    <li key={item} className='flex items-start gap-3 text-[22px] leading-[1.35]'>
+                    <li key={item.label} className='flex items-start gap-3 text-[22px] leading-[1.35]'>
                       <span className='mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-400 text-sm font-bold text-white'>
                         ✓
                       </span>
-                      <span>{item}</span>
+                      <Link href={item.href} className='underline-offset-4 transition-colors duration-200 hover:text-sky-200 hover:underline'>
+                        {item.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -96,7 +102,7 @@ function CompanySolution() {
               </svg>
               <div className='pointer-events-auto col-start-2 row-start-2 z-30 inline-flex h-17 w-16 items-center justify-center self-center justify-self-center rounded-tl-[28px] -mt-1 -ml-1 border bg-white p-1 '>
                 <a
-                href='#solutions-breakdown'
+                href='/all-reporting-solutions'
                 aria-label='Go to detailed solutions breakdown'
                 className='group inline-flex h-14 w-14 items-center justify-center overflow-hidden rounded-full bg-sky-400 text-2xl text-white transition-colors duration-300 hover:bg-sky-500'
               >

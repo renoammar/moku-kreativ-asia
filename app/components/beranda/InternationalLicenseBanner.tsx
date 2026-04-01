@@ -9,7 +9,7 @@ function InternationalLicenseBanner() {
             Kami telah Memiliki Lisensi Standard Internasional dari AA1000
           </p>
           <a
-            href='#our-solutions-grid'
+            href='/assurance'
             className='mt-4 inline-flex w-fit items-center whitespace-nowrap rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-blue-700'
           >
             Pelajari Lebih Lanjut
