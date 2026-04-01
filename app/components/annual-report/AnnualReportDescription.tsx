@@ -1,7 +1,6 @@
 import React from 'react';
 import { 
   FaCheckCircle, 
-  FaUsers, 
   FaBolt, 
   FaChartLine,
   FaBookOpen,
@@ -9,7 +8,8 @@ import {
   FaLightbulb,
   FaAward
 } from 'react-icons/fa';
-import { MdOutlineVerifiedUser, MdAssignment, MdOutlineInsights } from 'react-icons/md';
+import { MdOutlineVerifiedUser, MdAssignment } from 'react-icons/md';
+import WhyChooseUsCard from '../UI/WhyChooseUsCard';
 
 const AnnualReportDescription = () => {
   return (
@@ -53,6 +53,7 @@ const AnnualReportDescription = () => {
               <FaBolt className="text-white" /> Hubungi Kami
             </a>
           </div>
+          <WhyChooseUsCard />
         </div>
       </div>
 

@@ -7,6 +7,7 @@ import {
   FaHandshake 
 } from 'react-icons/fa';
 import { MdOutlineVerifiedUser, MdAssignment } from 'react-icons/md';
+import WhyChooseUsCard from '../UI/WhyChooseUsCard';
 
 const AssuranceDescription = () => {
   return (
@@ -51,36 +52,7 @@ const AssuranceDescription = () => {
               <FaBolt className="text-white" /> Hubungi Kami
             </a>
           </div>
-        {/* mengapa memilih kami */}
-          {/* <div className="rounded-2xl border border-[#125ff9]/15 bg-white p-8 shadow-sm">
-            <h3 className="mb-6 text-xl font-bold text-[#0D3C74]">Mengapa Memilih Kami?</h3>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <FaCheckCircle className="mt-1 shrink-0 text-xl text-[#125ff9]" />
-                <div>
-                  <p className="font-bold leading-tight">Standar Internasional</p>
-                  <p className="text-sm text-[#0D3C74]/65">AA1000AS V3 Certified</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <FaUsers className="mt-1 shrink-0 text-xl text-[#125ff9]" />
-                <div>
-                  <p className="font-bold leading-tight">Tim Berpengalaman</p>
-                  <p className="text-sm text-[#0D3C74]/65">150+ Proyek Selesai</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <FaBolt className="mt-1 shrink-0 text-xl text-[#125ff9]" />
-                <div>
-                  <p className="font-bold leading-tight">Proses Efisien</p>
-                  <p className="text-sm text-[#0D3C74]/65">Metodologi Terbukti</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
+          <WhyChooseUsCard showLogo />
         </div>
       </div>
 

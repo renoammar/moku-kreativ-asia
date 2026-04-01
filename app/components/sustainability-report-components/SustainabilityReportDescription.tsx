@@ -1,13 +1,13 @@
 import React from 'react';
 import { 
   FaCheckCircle, 
-  FaUsers, 
   FaBolt, 
   FaGlobe, 
   FaLeaf,
   FaShieldAlt
 } from 'react-icons/fa';
 import { MdOutlineVerifiedUser, MdAssignment, MdOutlineAccountTree } from 'react-icons/md';
+import WhyChooseUsCard from '../UI/WhyChooseUsCard';
 
 const SustainabilityReportDescription = () => {
   return (
@@ -52,6 +52,7 @@ const SustainabilityReportDescription = () => {
               <FaBolt className="text-white" /> Hubungi Kami
             </a>
           </div>
+          <WhyChooseUsCard />
         </div>
       </div>
 

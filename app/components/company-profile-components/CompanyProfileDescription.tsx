@@ -6,6 +6,7 @@ import {
   FaAward
 } from 'react-icons/fa';
 import { MdOutlineVerifiedUser, MdAssignment } from 'react-icons/md';
+import WhyChooseUsCard from '../UI/WhyChooseUsCard';
 
 const CompanyProfileDescription = () => {
   return (
@@ -49,6 +50,7 @@ const CompanyProfileDescription = () => {
               <FaBolt className="text-white" /> Hubungi Kami
             </a>
           </div>
+          <WhyChooseUsCard />
         </div>
       </div>
 
