@@ -53,7 +53,7 @@ export const portfolioVideosQuery = groq`
     caption,
     youtubeUrl,
     publishedAt,
-    "thumbnailUrl": thumbnail.asset->url,
+    "thumbnailUrl": coalesce(gif.asset->url, gifUrl, thumbnail.asset->url),
     "thumbnailAlt": thumbnail.alt
   }
 `
@@ -67,7 +67,7 @@ export const portfolioBySlugQuery = groq`
     youtubeUrl,
     publishedAt,
     "mainImage": {
-      "url": thumbnail.asset->url,
+      "url": coalesce(gif.asset->url, gifUrl, thumbnail.asset->url),
       "alt": thumbnail.alt
     },
     "images": images[]{
@@ -97,6 +97,6 @@ export const testMediaItemsQuery = groq`
       "/portfolio"
     ),
     "summary": select(_type == "post" => excerpt, "YouTube showcase video"),
-    "thumbnailUrl": select(_type == "portfolio" => thumbnail.asset->url, null)
+    "thumbnailUrl": select(_type == "portfolio" => coalesce(gif.asset->url, gifUrl, thumbnail.asset->url), null)
   }
 `

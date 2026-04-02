@@ -80,7 +80,7 @@ export default async function PortfolioDetailPage({params}: PortfolioDetailPageP
         <h1 className='text-[32px] font-bold leading-tight text-[#0066b2] md:text-[56px]'>{portfolio.title}</h1>
       </header>
 
-      {portfolio.mainImage?.url ? (
+      {!embedUrl && portfolio.mainImage?.url ? (
         <figure className='mb-10'>
           <img
             src={portfolio.mainImage.url}
@@ -88,12 +88,6 @@ export default async function PortfolioDetailPage({params}: PortfolioDetailPageP
             className='w-full rounded-4xl object-cover'
           />
         </figure>
-      ) : null}
-
-      {portfolio.caption ? (
-        <div className='mb-12 rounded-3xl bg-[#f0f9ff] p-6 md:p-8'>
-          <p className='text-[19px] leading-relaxed text-[#0066b2]'>{portfolio.caption}</p>
-        </div>
       ) : null}
 
       {embedUrl ? (
@@ -115,6 +109,12 @@ export default async function PortfolioDetailPage({params}: PortfolioDetailPageP
             </div>
           </div>
         </section>
+      ) : null}
+
+      {portfolio.caption ? (
+        <div className='mb-12 rounded-3xl bg-[#f0f9ff] p-6 md:p-8'>
+          <p className='text-[19px] leading-relaxed text-[#0066b2]'>{portfolio.caption}</p>
+        </div>
       ) : null}
 
       {portfolio.images && portfolio.images.length > 0 ? (
