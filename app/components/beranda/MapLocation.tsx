@@ -12,12 +12,13 @@ function MapLocation() {
 					<div className='grid gap-5 md:grid-cols-[1fr_0.95fr]'>
 						<div className='relative min-h-70 overflow-hidden rounded-[22px] bg-[#dce6f3] md:min-h-90'>
 							<iframe
-								src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.583326442383!2d106.82135347499003!3d-6.186476093801065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f428abe15763%3A0x7c3a05b23a1bfef!2sMenara%20Cakrawala!5e0!3m2!1sid!2sid!4v1774582029213!5m2!1sid!2sid'
-								className='h-full min-h-70 w-full border-0 md:min-h-90'
+								src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d991.6459699270483!2d106.82300836951666!3d-6.186402366317223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f42ed1a7538b%3A0x132a5a0d4797a6f1!2sMenara%20Cakarawala%2C%20Jl.%20M.H.%20Thamrin%20No.9%2C%20RT.2%2FRW.1%2C%20Kb.%20Sirih%2C%20Kec.%20Menteng%2C%20Kota%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2010340!5e0!3m2!1sid!2sid!4v1775144877936!5m2!1sid!2sid'
+								className='h-full w-full'
+								style={{border: 0}}
 								allowFullScreen
 								loading='lazy'
 								referrerPolicy='no-referrer-when-downgrade'
-								title='Menara Cakrawala Location Map'
+								title='Moku Kreativ Asia location'
 							/>
 						</div>
 
