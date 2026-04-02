@@ -92,7 +92,7 @@ function CompanySolution() {
               </div>
             </div>
 
-            <div className='pointer-events-none absolute bottom-[-65] right-[-65] z-20 grid h-36 w-36 grid-cols-3 grid-rows-3 md:h-44 md:w-44'>
+            <div className='z-10 pointer-events-none absolute bottom-[-65] right-[-65] z-20 grid h-36 w-36 grid-cols-3 grid-rows-3 md:h-44 md:w-44'>
               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' className='col-start-2 row-start-1 h-10 w-10 -translate-y-1 self-end justify-self-center md:h-12 md:w-12 -mb-1.2 -rotate-1'>
                 <path fill='white' d='M0 48h48V0c0 26.5-21.5 48-48 48z' />
               </svg>

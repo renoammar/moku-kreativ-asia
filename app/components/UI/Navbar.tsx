@@ -76,7 +76,7 @@ function Navbar() {
   return (
     <div
       id='site-navbar'
-      className={`fixed top-4 left-1/2 z-50 w-[80%] -translate-x-1/2 overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen || isMobileClosing ? 'rounded-4xl' : 'rounded-full'}`}
+      className={`fixed top-4 inset-x-0 z-50 mx-auto w-[92%] max-w-6xl overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen || isMobileClosing ? 'rounded-4xl' : 'rounded-full'}`}
     >
       <div className='h-16 px-6 flex items-center justify-between'>
         <Link href='/' aria-label='Go to homepage'>
