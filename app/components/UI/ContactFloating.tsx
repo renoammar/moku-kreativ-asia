@@ -16,7 +16,7 @@ export default function ContactFloating() {
   const eventUrl = `https://Wa.me/${eventNumber}?text=${encodeURIComponent(eventMessage)}`
 
   return (
-    <div className='fixed right-0 top-1/2 z-[99999] flex -translate-y-1/2 items-center'>
+    <div className='fixed right-0 top-1/2 z-99999 flex -translate-y-1/2 items-center'>
       <AnimatePresence mode='wait'>
         {!isOpen ? (
           /* FIX: Memberikan key dan exit property agar transisi mulus dan tidak menumpuk */

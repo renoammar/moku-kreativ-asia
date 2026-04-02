@@ -8,8 +8,8 @@ function ContactUsHero() {
 
       <div className='relative z-10 flex min-h-screen items-center px-4 py-16'>
         <div className='container mx-auto'>
-          <div className='max-w-3xl'>
-            <h1 className='text-4xl font-bold text-white md:text-[48px] leading-tight'>
+          <div className='mx-auto max-w-3xl text-center'>
+            <h1 className='text-4xl font-bold leading-tight text-white md:text-[48px]'>
               Percayakan Penyusunan Laporan dan Event Anda kepada kami
             </h1>
             <p className='mt-4 text-lg text-white/90'>
@@ -17,7 +17,7 @@ function ContactUsHero() {
             </p>
           </div>
 
-          <div className='mt-10 grid gap-6 md:grid-cols-2'>
+          <div className='mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2'>
             <div className='rounded-3xl border border-white/20 bg-white/10 p-6 text-white shadow-xl backdrop-blur-xl'>
               <div className='flex items-center gap-3'>
                 <div className='flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15'>
