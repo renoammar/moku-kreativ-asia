@@ -29,7 +29,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${figtree.variable} h-full antialiased`}
     >
-      <body className={`${figtree.className} min-h-full flex flex-col bg-white text-black`}>
+      <body className={`${figtree.className} min-h-full flex flex-col bg-white text-black overflow-x-hidden`}>
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
