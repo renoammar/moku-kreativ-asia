@@ -13,7 +13,7 @@ function HomeHero() {
         playsInline
         preload='auto'
       >
-        <source src='/videos/temp-background-hero.webm' type='video/webm' />
+        <source src='/videos/background-hero.mp4' type='video/webm' />
       </video>
 
       <div className='absolute inset-0 bg-black/40' />
