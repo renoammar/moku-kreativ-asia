@@ -40,7 +40,7 @@ export const partnerLogos: PartnerLogo[] = [
   },
   {
     id: 'kemenperin',
-    src: '/images/partners/Logo Kemenperin.svg',
+    src: '/images/partners/Logo Kemenperin.png',
     alt: 'Kemenperin',
     groups: ['home'],
   },
