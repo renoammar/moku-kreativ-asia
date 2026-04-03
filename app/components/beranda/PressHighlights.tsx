@@ -8,6 +8,36 @@ import { client } from '@/sanity/lib/client'
 import { newsroomPostsQuery } from '@/sanity/lib/queries'
 import type { NewsPostListItem } from '@/sanity/lib/types'
 
+const refreshIntervalMs = 60_000
+const cacheKey = 'mka:pressHighlights'
+const cacheTtlMs = 5 * 60_000
+
+type CachePayload = {
+  timestamp: number
+  items: NewsPostListItem[]
+}
+
+const readCache = (): NewsPostListItem[] | null => {
+  if (typeof window === 'undefined') return null
+  const raw = window.sessionStorage.getItem(cacheKey)
+  if (!raw) return null
+
+  try {
+    const payload = JSON.parse(raw) as CachePayload
+    if (!payload?.timestamp || !Array.isArray(payload.items)) return null
+    if (Date.now() - payload.timestamp > cacheTtlMs) return null
+    return payload.items
+  } catch {
+    return null
+  }
+}
+
+const writeCache = (items: NewsPostListItem[]) => {
+  if (typeof window === 'undefined') return
+  const payload: CachePayload = { timestamp: Date.now(), items }
+  window.sessionStorage.setItem(cacheKey, JSON.stringify(payload))
+}
+
 function PressHighlights() {
   const [posts, setPosts] = useState<NewsPostListItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -15,16 +45,28 @@ function PressHighlights() {
 
   useEffect(() => {
     let isMounted = true
+    const cached = readCache()
+    let hasCache = false
+
+    if (cached && cached.length > 0) {
+      setPosts(cached)
+      setIsLoading(false)
+      setHasError(false)
+      hasCache = true
+    }
 
     const loadPosts = async () => {
       try {
+        if (!hasCache) setIsLoading(true)
         const result = await client.fetch<NewsPostListItem[]>(newsroomPostsQuery)
         if (!isMounted) return
-        setPosts(result.slice(0, 3))
+        const nextPosts = result.slice(0, 3)
+        setPosts(nextPosts)
+        writeCache(nextPosts)
         setHasError(false)
       } catch {
         if (!isMounted) return
-        setHasError(true)
+        if (!hasCache) setHasError(true)
       } finally {
         if (!isMounted) return
         setIsLoading(false)
@@ -32,7 +74,23 @@ function PressHighlights() {
     }
 
     void loadPosts()
-    return () => { isMounted = false }
+    const intervalId = window.setInterval(() => {
+      void loadPosts()
+    }, refreshIntervalMs)
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        void loadPosts()
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      isMounted = false
+      window.clearInterval(intervalId)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
   }, [])
 
   return (

@@ -13,24 +13,65 @@ function getPortfolioHref(video: PortfolioVideo): string {
   return '/portfolio'
 }
 
-function PortofolioHighlightPage
-() {
+const refreshIntervalMs = 60_000
+const cacheKey = 'mka:portfolioHighlights'
+const cacheTtlMs = 5 * 60_000
+
+type CachePayload = {
+  timestamp: number
+  items: PortfolioVideo[]
+}
+
+const readCache = (): PortfolioVideo[] | null => {
+  if (typeof window === 'undefined') return null
+  const raw = window.sessionStorage.getItem(cacheKey)
+  if (!raw) return null
+
+  try {
+    const payload = JSON.parse(raw) as CachePayload
+    if (!payload?.timestamp || !Array.isArray(payload.items)) return null
+    if (Date.now() - payload.timestamp > cacheTtlMs) return null
+    return payload.items
+  } catch {
+    return null
+  }
+}
+
+const writeCache = (items: PortfolioVideo[]) => {
+  if (typeof window === 'undefined') return
+  const payload: CachePayload = { timestamp: Date.now(), items }
+  window.sessionStorage.setItem(cacheKey, JSON.stringify(payload))
+}
+
+function PortofolioHighlightPage() {
   const [videos, setVideos] = useState<PortfolioVideo[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
     let isMounted = true
+    const cached = readCache()
+    let hasCache = false
+
+    if (cached && cached.length > 0) {
+      setVideos(cached)
+      setIsLoading(false)
+      setHasError(false)
+      hasCache = true
+    }
 
     const loadVideos = async () => {
       try {
+        if (!hasCache) setIsLoading(true)
         const result = await client.fetch<PortfolioVideo[]>(portfolioVideosQuery)
         if (!isMounted) return
-        setVideos(result.slice(0, 3))
+        const nextVideos = result.slice(0, 3)
+        setVideos(nextVideos)
+        writeCache(nextVideos)
         setHasError(false)
       } catch {
         if (!isMounted) return
-        setHasError(true)
+        if (!hasCache) setHasError(true)
       } finally {
         if (!isMounted) return
         setIsLoading(false)
@@ -38,7 +79,23 @@ function PortofolioHighlightPage
     }
 
     void loadVideos()
-    return () => { isMounted = false }
+    const intervalId = window.setInterval(() => {
+      void loadVideos()
+    }, refreshIntervalMs)
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        void loadVideos()
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      isMounted = false
+      window.clearInterval(intervalId)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
   }, [])
 
   return (

@@ -1,5 +1,6 @@
 import React from 'react'
-import { clientLogos } from './SustainabilityClientLogos'
+import LogoMarquee from '../UI/LogoMarquee'
+import { sustainabilityClientLogos } from '../beranda/partners/partnerLogos'
 
 function SustainabilityClientsList() {
   return (
@@ -8,22 +9,12 @@ function SustainabilityClientsList() {
         Our Precious Client :
       </h2>
 
-      <div className='flex flex-wrap justify-center gap-5'>
-        {clientLogos.map((client) => (
-          <div
-            key={client.src}
-            className='flex h-28 w-40 shrink-0 items-center justify-center rounded-2xl bg-white/90 p-4  transition-transform duration-300 hover:-translate-y-1 sm:w-44 md:w-48 lg:w-44 xl:w-48'
-          >
-            <img
-              src={client.src}
-              alt={client.alt}
-              className='h-full w-full object-contain'
-              loading='lazy'
-              decoding='async'
-            />
-          </div>
-        ))}
-      </div>
+      <LogoMarquee
+        className='justify-center'
+        logos={sustainabilityClientLogos}
+        trackClassName='flex w-max items-center gap-5'
+        itemClassName='flex h-28 w-40 shrink-0 items-center justify-center rounded-2xl bg-white/90 p-4 transition-transform duration-300 hover:-translate-y-1 sm:w-44 md:w-48 lg:w-44 xl:w-48'
+      />
     </section>
   )
 }

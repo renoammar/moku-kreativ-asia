@@ -11,8 +11,8 @@ export default function Home() {
     <>
       <HomeHero />
       <CompanySolution />
-      <PressHighlights />
       <PortofolioHighlightPage />
+      <PressHighlights />
       <ContactSection />
       <MapLocation />
      

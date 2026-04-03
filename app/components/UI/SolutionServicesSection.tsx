@@ -55,15 +55,15 @@ export default function SolutionServicesSection({
                 <button
                   key={service.id}
                   onClick={() => setActiveIndex(index)}
-                  className={`flex flex-col justify-between items-start p-8 transition-colors duration-200 border h-56 group ${
+                  className={`flex flex-col items-center gap-6 p-8 transition-colors duration-200 border h-56 group ${
                     isActive
                       ? 'bg-white text-[#0D3C74] border-transparent shadow-xl'
                       : 'bg-white/10 border-white/10 hover:bg-white/20 text-white'
                   }`}
                   style={{ borderRadius: '24px 24px 70px 24px' }}
                 >
-                  <IconComponent className="text-4xl" />
-                  <span className="text-left font-bold text-xl leading-tight">{service.title}</span>
+                  <IconComponent className="text-5xl md:text-6xl" />
+                  <span className="text-center font-bold text-xl leading-tight">{service.title}</span>
                 </button>
               );
             })}

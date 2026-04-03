@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
+import ContactFloating from './ContactFloating'
 import Footer from './Footer'
 import Navbar from './Navbar'
 
@@ -22,6 +23,7 @@ export default function SiteChrome({ children }: SiteChromeProps) {
       <Navbar />
       {children}
       <Footer />
+      <ContactFloating />
     </>
   )
 }

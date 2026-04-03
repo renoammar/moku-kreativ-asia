@@ -1,13 +1,13 @@
 import React from 'react';
 import { 
-  FaCheckCircle, 
-  FaUsers, 
   FaBolt, 
   FaGlobe, 
   FaLeaf,
   FaShieldAlt
 } from 'react-icons/fa';
-import { MdOutlineVerifiedUser, MdAssignment, MdOutlineAccountTree } from 'react-icons/md';
+import { MdAssignment, MdOutlineAccountTree } from 'react-icons/md';
+import WhyChooseUsCard from '../UI/WhyChooseUsCard';
+import ScopeBenefitSection from '../UI/ScopeBenefitSection';
 
 const SustainabilityReportDescription = () => {
   return (
@@ -52,6 +52,7 @@ const SustainabilityReportDescription = () => {
               <FaBolt className="text-white" /> Hubungi Kami
             </a>
           </div>
+          <WhyChooseUsCard />
         </div>
       </div>
 
@@ -84,46 +85,34 @@ const SustainabilityReportDescription = () => {
       </div>
 
       {/* --- SECTION 3: Ruang Lingkup & Manfaat --- */}
-      <div className="grid gap-12 rounded-3xl bg-[#0D3C74] p-8 text-white lg:grid-cols-2 md:p-12">
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-white border-b border-white/20 pb-4">Ruang Lingkup Pekerjaan</h3>
-          
-          <div className="space-y-4">
-            <div className="flex items-start gap-4 rounded-xl bg-white/10 p-5">
-              <MdOutlineAccountTree className="shrink-0 text-3xl text-[#8EBBFF]" />
-              <div>
-                <p className="font-semibold text-lg">Proses Pengembangan</p>
-                <p className="text-sm text-white/80 leading-relaxed">Pengumpulan data ESG, analisis isu material, serta penyusunan struktur laporan yang mencerminkan kinerja dan dampak keberlanjutan perusahaan.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 rounded-xl bg-white/10 p-5">
-              <MdAssignment className="shrink-0 text-3xl text-[#8EBBFF]" />
-              <div>
-                <p className="font-semibold text-lg">Penyusunan & Penyajian</p>
-                <p className="text-sm text-white/80 leading-relaxed">Pengembangan narasi dan desain laporan yang selaras dengan standar internasional (GRI) dan kebutuhan komunikasi stakeholder.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-2xl bg-[#125ff9] p-8 shadow-inner">
-          <h3 className="text-2xl font-bold mb-6">Manfaat bagi Perusahaan</h3>
-          <ul className="space-y-4">
-            {[
-              "Menyajikan kinerja ESG secara jelas dan terpercaya",
-              "Meningkatkan transparansi kepada stakeholder dan investor",
-              "Memastikan kesesuaian dengan standar dan regulasi",
-              "Memperkuat citra perusahaan sebagai entitas berkelanjutan",
-              "Menunjukkan komitmen dan arah strategi masa depan"
-            ].map((text, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <FaCheckCircle className="text-white/90 mt-1 shrink-0" />
-                <span className="font-medium text-white">{text}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <ScopeBenefitSection
+        scopeTitle="Ruang Lingkup Pekerjaan"
+        scopeTitleClassName="text-2xl font-bold text-white border-b border-white/20 pb-4"
+        scopeItems={[
+          {
+            icon: <MdOutlineAccountTree className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            title: "Proses Pengembangan",
+            description: "Pengumpulan data ESG, analisis isu material, serta penyusunan struktur laporan yang mencerminkan kinerja dan dampak keberlanjutan perusahaan.",
+          },
+          {
+            icon: <MdAssignment className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            title: "Penyusunan & Penyajian",
+            description: "Pengembangan narasi dan desain laporan yang selaras dengan standar internasional (GRI) dan kebutuhan komunikasi stakeholder.",
+          },
+        ]}
+        scopeItemClassName="flex items-start gap-4 rounded-xl bg-white/10 p-5"
+        scopeItemDescClassName="text-sm text-white/80 leading-relaxed"
+        benefitTitle="Manfaat bagi Perusahaan"
+        benefitItems={[
+          "Menyajikan kinerja ESG secara jelas dan terpercaya",
+          "Meningkatkan transparansi kepada stakeholder dan investor",
+          "Memastikan kesesuaian dengan standar dan regulasi",
+          "Memperkuat citra perusahaan sebagai entitas berkelanjutan",
+          "Menunjukkan komitmen dan arah strategi masa depan",
+        ]}
+        benefitContainerClassName="rounded-2xl bg-[#125ff9] p-8 shadow-inner"
+        benefitTextClassName="font-medium text-white"
+      />
 
     </div>
   );

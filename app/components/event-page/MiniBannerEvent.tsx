@@ -11,7 +11,7 @@ function MiniBannerEvent() {
         
         {/* Title */}
         <h2 className="text-3xl md:text-4xl font-bold leading-snug">
-          Ingin memastikan laporan sustainability Anda lebih kredibel dan terpercaya?
+          Wujudkan event yang impactful dan berkesan!
         </h2>
 
         {/* Subtitle */}
@@ -24,7 +24,7 @@ function MiniBannerEvent() {
           
           {/* WhatsApp Button */}
           <a
-            href="https://Wa.me/+6289627667568" // Replace with actual WhatsApp link
+            href="https://Wa.me/+628558827737" // Replace with actual WhatsApp link
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-3 bg-[#10b981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-semibold text-lg shadow-md transition-all duration-300"

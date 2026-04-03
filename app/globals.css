@@ -3,6 +3,18 @@
 @plugin "@tailwindcss/typography";
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-x: hidden;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 /* DELETE this block in globals.css */

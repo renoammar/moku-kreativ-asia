@@ -1,5 +1,6 @@
 import React from 'react'
-import PartnerLogoGrid from './partners/PartnerLogoGrid'
+import LogoMarquee from '../UI/LogoMarquee'
+import { homePartnerLogos } from './partners/partnerLogos'
 
 function HomeHero() {
   return (
@@ -12,7 +13,7 @@ function HomeHero() {
         playsInline
         preload='auto'
       >
-        <source src='/videos/temp-background-hero.webm' type='video/webm' />
+        <source src='/videos/background-hero.mp4' type='video/webm' />
       </video>
 
       <div className='absolute inset-0 bg-black/40' />
@@ -22,7 +23,12 @@ function HomeHero() {
           <h1 className='text-3xl font-bold text-white md:text-[76px]'>Credible Reporting, Memorable Event Experience</h1>
           <p className='mt-4 text-base text-white md:text-[18px]'>Leading Corporate Reporting & Event Solutions Partner in Indonesia</p>
 
-          <PartnerLogoGrid />
+          <LogoMarquee
+            className='mt-8'
+            logos={homePartnerLogos}
+            itemClassName='flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-slate-100/55 p-3 shadow-sm backdrop-blur-sm'
+            enableHoverEffect
+          />
         </div>
       </div>
     </section>

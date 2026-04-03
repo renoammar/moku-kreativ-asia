@@ -48,7 +48,7 @@ function HeroRightCards() {
                     <img
                       src={`/images/${highlight.img}`}
                       alt='AA1000 licensed assurance provider'
-                      className='h-full w-full object-contain bg-white/40 rounded'
+                      className='h-full w-full object-contain'
                     />
                   </div>
                 ) : null}

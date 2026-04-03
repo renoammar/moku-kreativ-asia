@@ -20,8 +20,8 @@ function LayananLainnya() {
     {
       title: "Company Profile",
       tag: "BRANDING",
-      href: "/all-reporting-solutions/company-profile",
-      matchPaths: ["/all-reporting-solutions/company-profile"],
+      href: "/company-profile",
+      matchPaths: ["/all-reporting-solutions/company-profile", "/company-profile"],
       description: "Layanan penyusunan Company Profile kami dirancang secara komprehensif untuk memperkuat positioning dan kredibilitas perusahaan.",
       extra: "Kami menyusun narasi strategis, struktur konten, hingga desain profesional yang disesuaikan dengan kebutuhan investor dan regulator.",
       footer: "Hasil akhir tampil informatif, persuasif, dan selaras dengan identitas perusahaan."

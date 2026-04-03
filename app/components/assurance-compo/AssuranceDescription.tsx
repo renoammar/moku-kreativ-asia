@@ -1,12 +1,13 @@
 import React from 'react';
 import { 
-  FaCheckCircle, 
   FaUsers, 
   FaBolt, 
   FaGlobe, 
   FaHandshake 
 } from 'react-icons/fa';
 import { MdOutlineVerifiedUser, MdAssignment } from 'react-icons/md';
+import WhyChooseUsCard from '../UI/WhyChooseUsCard';
+import ScopeBenefitSection from '../UI/ScopeBenefitSection';
 
 const AssuranceDescription = () => {
   return (
@@ -51,36 +52,7 @@ const AssuranceDescription = () => {
               <FaBolt className="text-white" /> Hubungi Kami
             </a>
           </div>
-        {/* mengapa memilih kami */}
-          {/* <div className="rounded-2xl border border-[#125ff9]/15 bg-white p-8 shadow-sm">
-            <h3 className="mb-6 text-xl font-bold text-[#0D3C74]">Mengapa Memilih Kami?</h3>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <FaCheckCircle className="mt-1 shrink-0 text-xl text-[#125ff9]" />
-                <div>
-                  <p className="font-bold leading-tight">Standar Internasional</p>
-                  <p className="text-sm text-[#0D3C74]/65">AA1000AS V3 Certified</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <FaUsers className="mt-1 shrink-0 text-xl text-[#125ff9]" />
-                <div>
-                  <p className="font-bold leading-tight">Tim Berpengalaman</p>
-                  <p className="text-sm text-[#0D3C74]/65">150+ Proyek Selesai</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <FaBolt className="mt-1 shrink-0 text-xl text-[#125ff9]" />
-                <div>
-                  <p className="font-bold leading-tight">Proses Efisien</p>
-                  <p className="text-sm text-[#0D3C74]/65">Metodologi Terbukti</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
+          <WhyChooseUsCard showLogo />
         </div>
       </div>
 
@@ -114,47 +86,32 @@ const AssuranceDescription = () => {
       </div>
 
       {/* --- SECTION 3: Ruang Lingkup & Manfaat --- */}
-      <div className="grid gap-12 rounded-3xl bg-[#0D3C74] p-8 text-white lg:grid-cols-2 md:p-12">
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-white">Ruang Lingkup Assurance</h3>
-          <p className="text-white/90">Layanan mencakup evaluasi menyeluruh terhadap aspek ESG dan program CSR perusahaan.</p>
-          
-          <div className="space-y-4">
-            <div className="flex items-start gap-4 rounded-xl bg-white/10 p-4">
-              <MdAssignment className="shrink-0 text-3xl text-[#8EBBFF]" />
-              <div>
-                <p className="font-semibold">Proses Assurance</p>
-                <p className="text-sm text-white/90">Evaluasi program CSR dan laporan keberlanjutan sesuai standar sektor industri.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 rounded-xl bg-white/10 p-4">
-              <MdOutlineVerifiedUser className="shrink-0 text-3xl text-[#8EBBFF]" />
-              <div>
-                <p className="font-semibold">Penerbitan Statement</p>
-                <p className="text-sm text-white/90">Pernyataan independen berdasarkan analisis data dan observasi standar AA1000.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-2xl bg-[#125ff9] p-8">
-          <h3 className="text-2xl font-bold mb-6">Manfaat bagi Perusahaan</h3>
-          <ul className="space-y-4">
-            {[
-              "Meningkatkan kepercayaan investor",
-              "Memastikan kesesuaian standar global",
-              "Membangun awareness internal",
-              "Menunjukkan komitmen keberlanjutan",
-              "Mendorong kepedulian lingkungan"
-            ].map((text, i) => (
-              <li key={i} className="flex items-center gap-3">
-                <FaCheckCircle className="text-white/90" />
-                <span className="font-medium">{text}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <ScopeBenefitSection
+        scopeTitle="Ruang Lingkup Assurance"
+        scopeDescription="Layanan mencakup evaluasi menyeluruh terhadap aspek ESG dan program CSR perusahaan."
+        scopeItems={[
+          {
+            icon: <MdAssignment className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            title: "Proses Assurance",
+            description: "Evaluasi program CSR dan laporan keberlanjutan sesuai standar sektor industri.",
+          },
+          {
+            icon: <MdOutlineVerifiedUser className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            title: "Penerbitan Statement",
+            description: "Pernyataan independen berdasarkan analisis data dan observasi standar AA1000.",
+          },
+        ]}
+        benefitTitle="Manfaat bagi Perusahaan"
+        benefitItems={[
+          "Meningkatkan kepercayaan investor",
+          "Memastikan kesesuaian standar global",
+          "Membangun awareness internal",
+          "Menunjukkan komitmen keberlanjutan",
+          "Mendorong kepedulian lingkungan",
+        ]}
+        benefitItemClassName="flex items-center gap-3"
+        benefitIconClassName="text-white/90"
+      />
 
     </div>
   );

@@ -29,21 +29,54 @@ export const portfolioType = defineType({
       title: 'YouTube link',
       type: 'url',
       validation: (Rule) =>
-        Rule.required().custom((value) => {
-          if (!value) {
-            return 'A YouTube link is required'
+        Rule.custom((value, context) => {
+          const document = context?.document as
+            | {thumbnail?: {asset?: {_ref?: string}}}
+            | undefined
+          const hasThumbnail = Boolean(document?.thumbnail?.asset?._ref)
+
+          if (!value && !hasThumbnail) {
+            return 'Add a YouTube link or upload a cover image.'
           }
 
-          return youtubeRegex.test(value) || 'Only YouTube links are allowed'
+          if (value && !youtubeRegex.test(value)) {
+            return 'Only YouTube links are allowed'
+          }
+
+          return true
         }),
-      description: 'Paste a YouTube watch, shorts, or youtu.be URL.',
+      description: 'Optional. Paste a YouTube watch, shorts, or youtu.be URL.',
     }),
+      defineField({
+        name: 'gif',
+        title: 'GIF preview upload',
+        type: 'file',
+        options: {accept: 'image/gif'},
+        description: 'Optional animated preview. Prefer upload; falls back to link if empty.',
+      }),
+      defineField({
+        name: 'gifUrl',
+        title: 'GIF preview link',
+        type: 'url',
+        description: 'Optional GIF URL if you do not upload a file.',
+      }),
     defineField({
       name: 'thumbnail',
       title: 'Cover image',
       type: 'image',
       options: {hotspot: true},
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const document = context?.document as {youtubeUrl?: string} | undefined
+          const hasYoutube = Boolean(document?.youtubeUrl)
+          const hasThumbnail = Boolean(value?.asset)
+
+          if (!hasYoutube && !hasThumbnail) {
+            return 'Upload a cover image or add a YouTube link.'
+          }
+
+          return true
+        }),
       fields: [
         defineField({
           name: 'alt',

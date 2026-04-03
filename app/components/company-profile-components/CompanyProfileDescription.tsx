@@ -1,11 +1,12 @@
 import { 
-  FaCheckCircle, 
   FaBolt, 
   FaBalanceScale,
   FaLightbulb,
   FaAward
 } from 'react-icons/fa';
 import { MdOutlineVerifiedUser, MdAssignment } from 'react-icons/md';
+import WhyChooseUsCard from '../UI/WhyChooseUsCard';
+import ScopeBenefitSection from '../UI/ScopeBenefitSection';
 
 const CompanyProfileDescription = () => {
   return (
@@ -49,6 +50,7 @@ const CompanyProfileDescription = () => {
               <FaBolt className="text-white" /> Hubungi Kami
             </a>
           </div>
+          <WhyChooseUsCard />
         </div>
       </div>
 
@@ -103,47 +105,30 @@ const CompanyProfileDescription = () => {
       </div>
 
       {/* --- SECTION 4: Ruang Lingkup & Manfaat --- */}
-      <div className="grid gap-12 rounded-3xl bg-[#0D3C74] p-8 text-white lg:grid-cols-2 md:p-12">
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-white">Ruang Lingkup Layanan</h3>
-          <p className="text-white/90">Kami memberikan solusi end-to-end mulai dari pengumpulan data hingga penyajian laporan final.</p>
-          
-          <div className="space-y-4">
-            <div className="flex items-start gap-4 rounded-xl bg-white/10 p-4">
-              <MdAssignment className="shrink-0 text-3xl text-[#8EBBFF]" />
-              <div>
-                <p className="font-semibold text-lg">Proses Pengembangan</p>
-                <p className="text-sm text-white/90 leading-relaxed">Melakukan pengumpulan data, analisis informasi, serta penyusunan struktur laporan yang mencerminkan kinerja dan strategi perusahaan secara menyeluruh.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 rounded-xl bg-white/10 p-4">
-              <MdOutlineVerifiedUser className="shrink-0 text-3xl text-[#8EBBFF]" />
-              <div>
-                <p className="font-semibold text-lg">Penyusunan & Penyajian</p>
-                <p className="text-sm text-white/90 leading-relaxed">Mengembangkan konten, narasi, serta desain company profile yang selaras dengan identitas brand dan kebutuhan komunikasi stakeholder.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-2xl bg-[#125ff9] p-8">
-          <h3 className="text-2xl font-bold mb-6">Manfaat bagi Perusahaan</h3>
-          <ul className="space-y-4">
-            {[
-              "Menyajikan kinerja perusahaan secara jelas dan terpercaya",
-              "Meningkatkan kepercayaan klien dan partner bisnis",
-              "Memastikan pesan brand tersampaikan secara konsisten",
-              "Memperkuat citra dan reputasi perusahaan di pasar",
-              "Mendukung proses presentasi bisnis dan pengembangan relasi"
-            ].map((text, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <FaCheckCircle className="text-white/90 mt-1 shrink-0" />
-                <span className="font-medium">{text}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <ScopeBenefitSection
+        scopeTitle="Ruang Lingkup Layanan"
+        scopeDescription="Kami memberikan solusi end-to-end mulai dari pengumpulan data hingga penyajian laporan final."
+        scopeItems={[
+          {
+            icon: <MdAssignment className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            title: "Proses Pengembangan",
+            description: "Melakukan pengumpulan data, analisis informasi, serta penyusunan struktur laporan yang mencerminkan kinerja dan strategi perusahaan secara menyeluruh.",
+          },
+          {
+            icon: <MdOutlineVerifiedUser className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            title: "Penyusunan & Penyajian",
+            description: "Mengembangkan konten, narasi, serta desain company profile yang selaras dengan identitas brand dan kebutuhan komunikasi stakeholder.",
+          },
+        ]}
+        benefitTitle="Manfaat bagi Perusahaan"
+        benefitItems={[
+          "Menyajikan kinerja perusahaan secara jelas dan terpercaya",
+          "Meningkatkan kepercayaan klien dan partner bisnis",
+          "Memastikan pesan brand tersampaikan secara konsisten",
+          "Memperkuat citra dan reputasi perusahaan di pasar",
+          "Mendukung proses presentasi bisnis dan pengembangan relasi",
+        ]}
+      />
 
     </div>
   );
