@@ -1,6 +1,6 @@
 import React from 'react'
 import LogoMarquee from '../UI/LogoMarquee'
-import { clientLogos } from './SustainabilityClientLogos'
+import { sustainabilityClientLogos } from '../beranda/partners/partnerLogos'
 
 function SustainabilityClientsList() {
   return (
@@ -11,7 +11,7 @@ function SustainabilityClientsList() {
 
       <LogoMarquee
         className='justify-center'
-        logos={clientLogos}
+        logos={sustainabilityClientLogos}
         trackClassName='flex w-max items-center gap-5'
         itemClassName='flex h-28 w-40 shrink-0 items-center justify-center rounded-2xl bg-white/90 p-4 transition-transform duration-300 hover:-translate-y-1 sm:w-44 md:w-48 lg:w-44 xl:w-48'
       />

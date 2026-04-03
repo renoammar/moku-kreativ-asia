@@ -1,5 +1,5 @@
 import React from 'react'
-import { clientLogos } from './AssuranceclientLogos'
+import { assuranceClientLogos } from '../beranda/partners/partnerLogos'
 
 function AssuranceClientsList() {
   return (
@@ -9,7 +9,7 @@ function AssuranceClientsList() {
       </h2>
 
       <div className='flex flex-wrap justify-center gap-5'>
-        {clientLogos.map((client) => (
+        {assuranceClientLogos.map((client) => (
           <div
             key={client.src}
             className='flex h-32 w-32 shrink-0 items-center justify-center rounded-2xl bg-white/90 p-4 transition-transform duration-300 hover:-translate-y-1 sm:h-36 sm:w-36 md:h-40 md:w-40 lg:h-56 lg:w-106'

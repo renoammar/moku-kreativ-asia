@@ -1,6 +1,6 @@
 import React from 'react'
 import LogoMarquee from '../UI/LogoMarquee'
-import { partnerLogos } from './partners/partnerLogos'
+import { homePartnerLogos } from './partners/partnerLogos'
 
 function HomeHero() {
   return (
@@ -25,7 +25,7 @@ function HomeHero() {
 
           <LogoMarquee
             className='mt-8'
-            logos={partnerLogos.map((logo) => ({ src: logo, alt: 'Partner logo' }))}
+            logos={homePartnerLogos}
             itemClassName='flex h-20 w-40 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-slate-100/55 p-3 shadow-sm backdrop-blur-sm'
             enableHoverEffect
           />
