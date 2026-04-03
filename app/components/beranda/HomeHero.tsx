@@ -13,7 +13,10 @@ function HomeHero() {
         playsInline
         preload='auto'
       >
-        <source src='/videos/background-hero.mp4' type='video/webm' />
+        <source
+          src='https://res.cloudinary.com/dafygituy/video/upload/q_auto/f_auto/v1775208850/background-hero_xpt6rh.mp4'
+          type='video/mp4'
+        />
       </video>
 
       <div className='absolute inset-0 bg-black/40' />
