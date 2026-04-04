@@ -29,7 +29,7 @@ export default function ContactFloating() {
             transition={{ duration: 0.2 }}
             onClick={() => setIsOpen(true)}
             aria-label='Open contact support'
-            className='flex flex-col items-center gap-3 rounded-l-2xl bg-[#123A66] px-3 py-5 text-white shadow-xl transition-colors hover:bg-[#0f2e52]'
+            className='flex flex-col items-center gap-3 rounded-l-2xl bg-[#125ff9] px-3 py-5 text-white shadow-xl transition-colors hover:bg-[#125ff9]'
           >
             <FaChevronLeft className='h-4 w-4 animate-pulse' />
             <span className='[writing-mode:vertical-lr] rotate-180 text-[11px] font-bold tracking-[0.35em] uppercase'>
@@ -47,7 +47,7 @@ export default function ContactFloating() {
             className='w-80 overflow-hidden rounded-l-[2.25rem] bg-white shadow-2xl md:w-96'
           >
             <div className='flex'>
-              <div className='flex w-16 flex-col items-center justify-between bg-[#123A66] py-7 text-white'>
+              <div className='flex w-16 flex-col items-center justify-between bg-[#125ff9] py-7 text-white'>
                 <button
                   type='button'
                   onClick={() => setIsOpen(false)}
@@ -78,7 +78,7 @@ export default function ContactFloating() {
                       href={reportingUrl}
                       target='_blank'
                       rel='noopener noreferrer'
-                      className='group flex w-full items-center justify-between rounded-2xl bg-[#081833] px-5 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[#123A66] hover:shadow-sky-200'
+                      className='group flex w-full items-center justify-between rounded-2xl bg-[#125ff9] px-5 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[#125ff9] hover:shadow-sky-200'
                     >
                       <span className='text-sm font-bold'>Reporting: +62 89627667568</span>
                       <FaWhatsapp className='h-4 w-4 transition-transform group-hover:translate-x-1' />
@@ -88,7 +88,7 @@ export default function ContactFloating() {
                       href={eventUrl}
                       target='_blank'
                       rel='noopener noreferrer'
-                      className='group flex w-full items-center justify-between rounded-2xl bg-[#081833] px-5 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[#123A66] hover:shadow-sky-200'
+                      className='group flex w-full items-center justify-between rounded-2xl bg-[#125ff9] px-5 py-3.5 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[#125ff9] hover:shadow-sky-200'
                     >
                       <span className='text-sm font-bold'>Event: +62 8558827737</span>
                       <FaWhatsapp className='h-4 w-4 transition-transform group-hover:translate-x-1' />
