@@ -7,27 +7,51 @@ export const portfolioType = defineType({
   name: 'portfolio',
   title: 'Portfolio',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'basics',
+      title: 'Basics',
+    },
+    {
+      name: 'media',
+      title: 'Media',
+    },
+    {
+      name: 'details',
+      title: 'Details',
+      options: {collapsible: true, collapsed: false},
+    },
+    {
+      name: 'publish',
+      title: 'Publish',
+      options: {collapsible: true, collapsed: true},
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+      fieldset: 'basics',
       validation: (Rule) => Rule.required().max(120),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'URL slug',
       type: 'slug',
+      fieldset: 'basics',
       options: {
         source: 'title',
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
+      description: 'Auto-generated from the title. Edit only if needed.',
     }),
     defineField({
       name: 'youtubeUrl',
-      title: 'YouTube link',
+      title: 'YouTube',
       type: 'url',
+      fieldset: 'media',
       validation: (Rule) =>
         Rule.custom((value, context) => {
           const document = context?.document as
@@ -45,25 +69,28 @@ export const portfolioType = defineType({
 
           return true
         }),
-      description: 'Optional. Paste a YouTube watch, shorts, or youtu.be URL.',
+      description: 'Paste a YouTube watch, shorts, or youtu.be URL.',
     }),
-      defineField({
-        name: 'gif',
-        title: 'GIF preview upload',
-        type: 'file',
-        options: {accept: 'image/gif'},
-        description: 'Optional animated preview. Prefer upload; falls back to link if empty.',
-      }),
-      defineField({
-        name: 'gifUrl',
-        title: 'GIF preview link',
-        type: 'url',
-        description: 'Optional GIF URL if you do not upload a file.',
-      }),
+    defineField({
+      name: 'gif',
+      title: 'GIF upload',
+      type: 'file',
+      fieldset: 'media',
+      options: {accept: 'image/gif'},
+      description: 'Optional animated preview. Upload preferred.',
+    }),
+    defineField({
+      name: 'gifUrl',
+      title: 'GIF link',
+      type: 'url',
+      fieldset: 'media',
+      description: 'Optional GIF URL if you do not upload a file.',
+    }),
     defineField({
       name: 'thumbnail',
       title: 'Cover image',
       type: 'image',
+      fieldset: 'media',
       options: {hotspot: true},
       validation: (Rule) =>
         Rule.custom((value, context) => {
@@ -85,20 +112,22 @@ export const portfolioType = defineType({
           validation: (Rule) => Rule.max(140),
         }),
       ],
-      description: 'Main image shown in portfolio listing and detail page.',
+      description: 'Main image shown in the portfolio listing and detail page.',
     }),
     defineField({
       name: 'caption',
       title: 'Caption',
       type: 'text',
+      fieldset: 'details',
       rows: 3,
       validation: (Rule) => Rule.max(260),
-      description: 'Short summary shown below the hero section.',
+      description: 'Short summary shown under the hero section.',
     }),
     defineField({
       name: 'images',
-      title: 'Additional images',
+      title: 'Gallery images',
       type: 'array',
+      fieldset: 'details',
       of: [
         defineArrayMember({
           type: 'image',
@@ -123,10 +152,12 @@ export const portfolioType = defineType({
     }),
     defineField({
       name: 'publishedAt',
-      title: 'Published at',
+      title: 'Publish date',
       type: 'datetime',
+      fieldset: 'publish',
       initialValue: () => new Date().toISOString(),
       validation: (Rule) => Rule.required(),
+      description: 'When this item appears on the site and in the list.',
     }),
   ],
   preview: {
