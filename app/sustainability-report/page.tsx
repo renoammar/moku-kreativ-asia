@@ -12,6 +12,7 @@ function SustainabilityReportPage() {
       <SustainabilityReportDescription />
       <SustainabilityClientsList />
       <LayananLainnya />
+      <MiniBannerSustainability />
     </>
   )
 }
