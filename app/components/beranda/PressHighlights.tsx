@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { HiArrowRight } from 'react-icons/hi2'
 
 import PressHighlightCard from '../UI/PressHighlightCard'
 import { client } from '@/sanity/lib/client'
@@ -104,7 +105,7 @@ function PressHighlights() {
             className='inline-flex w-fit items-center gap-2 rounded-full bg-sky-100 px-6 py-3 text-xl font-medium text-sky-500 transition-colors duration-300 hover:bg-sky-200 md:text-2xl'
           >
             See all news
-            <span aria-hidden='true'>→</span>
+            <HiArrowRight aria-hidden='true' className='text-2xl' />
           </Link>
         </div>
 

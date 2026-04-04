@@ -19,7 +19,7 @@ function Navbar() {
       ],
     },
     { label: 'EVENT SOLUTION', href: '/event' },
-    { label: '3D DESIGN', href: '#' },
+    // { label: '3D DESIGN', href: '#' },
     { label: 'CONTACT', href: '/contact' },
     {label:"moku studio",href:"/studio-moku-asia"}
   ]
