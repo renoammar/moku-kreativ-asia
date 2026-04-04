@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { HiArrowRight } from 'react-icons/hi2'
 
 import { client } from '@/sanity/lib/client'
 import { portfolioVideosQuery } from '@/sanity/lib/queries'
@@ -69,7 +70,7 @@ export default function PortfolioSection({ embedded = false, className = '' }: P
             className='inline-flex w-fit items-center gap-2 rounded-full bg-sky-100 px-6 py-3 text-xl font-medium text-sky-500 transition-colors duration-300 hover:bg-sky-200 md:text-2xl'
           >
             See all portfolio
-            <span aria-hidden='true'>→</span>
+            <HiArrowRight aria-hidden='true' className='text-2xl' />
           </Link>
         </div>
       </header>
