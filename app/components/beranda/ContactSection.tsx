@@ -40,6 +40,30 @@ function ContactSection() {
 		setIsSubjectOpen(false)
 	}
 
+	// const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	// 	event.preventDefault()
+
+	// 	const form = event.currentTarget
+	// 	const formData = new FormData(form)
+	// 	const summary = [
+	// 		`Full Name: ${formData.get('fullName') ?? ''}`,
+	// 		`Company: ${formData.get('companyInstitution') ?? ''}`,
+	// 		`Email: ${formData.get('workEmail') ?? ''}`,
+	// 		`Phone: ${formData.get('contactNumber') ?? ''}`,
+	// 		`Subject: ${selectedSubject || '-'}`,
+	// 		`Message: ${formData.get('message') ?? ''}`,
+	// 	].join('\n')
+
+	// 	const whatsappNumber = '6281511049920'
+	// 	const emailTo = 'maurenoammar4@gmail.com' // ganti ke email moku asia yang bener ya
+	// 	const subject = `Inquiry: ${selectedSubject || 'General'}`
+
+	// 	const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(summary)}`
+	// 	const mailtoUrl = `mailto:${emailTo}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(summary)}`
+
+	// 	window.location.href = mailtoUrl
+	// }
+
 	return (
 		<section className='relative overflow-hidden px-4 py-14 md:px-8 md:py-20'>
 			<div
@@ -60,14 +84,18 @@ function ContactSection() {
 						</p>
 					</div>
 
-					<form className='space-y-4 rounded-3xl bg-white/10 p-4 backdrop-blur-[2px] md:p-5'>
+					<form
+						action='https://formspree.io/f/mbdppqkq'
+						method='POST'
+						className='space-y-4 rounded-3xl bg-white/10 p-4 backdrop-blur-[2px] md:p-5'
+					>
 						<div>
 							<label htmlFor='full-name' className='mb-1 block text-sm font-semibold text-white'>
 								Full Name*
 							</label>
 							<input
 								id='full-name'
-								name='fullName'
+								name='full_name'
 								type='text'
 								required
 								placeholder='Jane Smith'
@@ -81,7 +109,7 @@ function ContactSection() {
 							</label>
 							<input
 								id='company-institution'
-								name='companyInstitution'
+								name='company_institution'
 								type='text'
 								required
 								placeholder='Company/Institution'
@@ -95,7 +123,7 @@ function ContactSection() {
 							</label>
 							<input
 								id='work-email'
-								name='workEmail'
+								name='email'
 								type='email'
 								required
 								placeholder='work@email.com'
@@ -109,7 +137,7 @@ function ContactSection() {
 							</label>
 							<input
 								id='contact-number'
-								name='contactNumber'
+								name='contact_number'
 								type='tel'
 								required
 								placeholder='081234567890'
@@ -119,6 +147,7 @@ function ContactSection() {
 
 						<div ref={subjectWrapperRef} className='relative'>
 							<label className='mb-1 block text-sm font-semibold text-white'>Subject*</label>
+							<input type='hidden' name='subject' value={selectedSubject || 'General'} />
 							<button
 								type='button'
 								onClick={() => setIsSubjectOpen((prev) => !prev)}
