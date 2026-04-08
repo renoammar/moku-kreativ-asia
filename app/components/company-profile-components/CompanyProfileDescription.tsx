@@ -1,8 +1,8 @@
 import { 
   FaBolt, 
-  FaBalanceScale,
+  FaHandshake,
   FaLightbulb,
-  FaAward
+  FaPalette
 } from 'react-icons/fa';
 import { MdOutlineVerifiedUser, MdAssignment } from 'react-icons/md';
 import WhyChooseUsCard from '../UI/WhyChooseUsCard';
@@ -13,29 +13,32 @@ const CompanyProfileDescription = () => {
     <div className="mx-auto max-w-6xl bg-white p-6 font-sans text-[#0D3C74] md:p-12">
       
       {/* --- SECTION 1: Deskripsi Layanan --- */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
+      {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
         <div className="lg:col-span-2 space-y-6">
           <h2 className="text-3xl font-bold text-[#0D3C74]">Company Profile Service</h2>
           <p className="leading-relaxed text-[#0D3C74]/80">
-            Penyusunan Company Profile merupakan proses pengembangan dokumen profil perusahaan yang merangkum identitas brand, kapabilitas, layanan, serta pencapaian utama secara profesional. Layanan ini memastikan bahwa profil perusahaan tidak hanya informatif, tetapi juga mampu menyampaikan positioning bisnis secara jelas, kredibel, dan relevan.
+            Penyusunan Company Profile merupakan proses pengembangan dokumen yang merepresentasikan identitas, kapabilitas, serta nilai perusahaan secara menyeluruh. Layanan ini tidak hanya berfokus pada penyajian informasi, tetapi juga pada bagaimana perusahaan dikomunikasikan secara strategis kepada audiens.
           </p>
 
           <p className="font-semibold text-[#0D3C74]">Kami mengadopsi pendekatan komprehensif yang mencakup:</p>
 
           <div className="space-y-4">
             <div className="border-l-4 border-[#125ff9] pl-4">
-              <p><span className="font-bold">Kejelasan:</span> Penyajian kinerja perusahaan kepada stakeholder agar mudah dipahami.</p>
+              <p><span className="font-bold">Kejelasan:</span> Kejelasan dalam menyampaikan identitas dan layanan perusahaan.</p>
             </div>
             <div className="border-l-4 border-[#125ff9] pl-4">
-              <p><span className="font-bold">Relevansi:</span> Informasi yang disampaikan sesuai dengan kondisi bisnis dan industri terkini.</p>
+              <p><span className="font-bold">Relevansi:</span> Relevansi pesan dengan target market dan industri.</p>
             </div>
             <div className="border-l-4 border-[#125ff9] pl-4">
-              <p><span className="font-bold">Konsistensi:</span> Penyelarasan pesan perusahaan dengan strategi dan arah pertumbuhan masa depan.</p>
+              <p><span className="font-bold">Konsistensi:</span> Konsistensi brand dalam setiap elemen komunikasi.</p>
+            </div>
+            <div className="border-l-4 border-[#125ff9] pl-4">
+              <p><span className="font-bold">Narasi:</span> Penyusunan narasi yang memperkuat positioning bisnis.</p>
             </div>
           </div>
 
           <p className="pt-4 text-[#0D3C74]/90">
-            Hasilnya adalah Company Profile yang lebih informatif, kredibel, dan mampu memperkuat citra perusahaan di mata klien maupun stakeholder.
+            Hasilnya adalah Company Profile yang lebih profesional, kredibel, dan mampu meningkatkan kepercayaan serta peluang kolaborasi bisnis.
           </p>
         </div>
 
@@ -52,26 +55,31 @@ const CompanyProfileDescription = () => {
           </div>
           <WhyChooseUsCard />
         </div>
-      </div>
+      </div> */}
 
       {/* --- SECTION 2: Positioning Perusahaan --- */}
       <div className="mb-20">
         <h3 className="text-2xl font-bold text-center mb-10">Bangun Company Profile yang Profesional dan Meyakinkan</h3>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="bg-slate-50 p-8 rounded-2xl text-center border border-slate-100">
-            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaBalanceScale /></div>
-            <h4 className="font-bold text-lg mb-3">Struktur yang Profesional</h4>
-            <p className="text-sm text-slate-600">Kami menyusun profil perusahaan dengan alur informasi yang jelas dan mudah dipahami audiens.</p>
+            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaHandshake /></div>
+            <h4 className="font-bold text-lg mb-3">Brand Representation yang Kuat</h4>
+            <p className="text-sm text-slate-600">Kami memastikan company profile Anda merepresentasikan identitas, nilai, dan positioning perusahaan secara konsisten dan profesional.</p>
           </div>
           <div className="bg-slate-50 p-8 rounded-2xl text-center border border-slate-100">
             <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaLightbulb /></div>
-            <h4 className="font-bold text-lg mb-3">Visual Informatif</h4>
-            <p className="text-sm text-slate-600">Desain visual yang menarik untuk menonjolkan value dan diferensiasi perusahaan secara efektif.</p>
+            <h4 className="font-bold text-lg mb-3">Narasi yang Strategis</h4>
+            <p className="text-sm text-slate-600">Kami mengembangkan storytelling yang tidak hanya informatif, tetapi juga mampu menyampaikan keunggulan dan diferensiasi bisnis secara jelas.</p>
           </div>
           <div className="bg-slate-50 p-8 rounded-2xl text-center border border-slate-100">
-            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaAward /></div>
+            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaPalette /></div>
+            <h4 className="font-bold text-lg mb-3">Visual yang Profesional & Menarik</h4>
+            <p className="text-sm text-slate-600">Desain visual yang modern, clean, dan selaras dengan brand guideline untuk meningkatkan kredibilitas perusahaan di mata audiens.</p>
+          </div>
+          <div className="bg-slate-50 p-8 rounded-2xl text-center border border-slate-100">
+            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><MdOutlineVerifiedUser /></div>
             <h4 className="font-bold text-lg mb-3">Expertise yang Terpercaya</h4>
-            <p className="text-sm text-slate-600">Didukung oleh tim berpengalaman dalam menyusun company profile untuk beragam sektor industri.</p>
+            <p className="text-sm text-slate-600">Didukung oleh tim berpengalaman dalam menangani berbagai industri, mulai dari UMKM hingga perusahaan korporasi dan multinasional.</p>
           </div>
         </div>
       </div>
@@ -81,9 +89,9 @@ const CompanyProfileDescription = () => {
       {/* --- SECTION 3: Scope of Work --- */}
       <div className="mb-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Scope of Work Company Profile</h2>
+          <h2 className="text-3xl font-bold mb-4">Ruang Lingkup Layanan Company Profile</h2>
           <p className="mx-auto max-w-3xl text-[#0D3C74]/80">
-            Layanan Company Profile kami mencakup pengembangan profil perusahaan dengan pendekatan strategis, kreatif, dan berorientasi pada kebutuhan bisnis.
+            Layanan Company Profile kami mencakup pengembangan profil perusahaan dengan pendekatan strategis, kreatif, dan berbasis kebutuhan bisnis.
           </p>
         </div>
 
@@ -111,22 +119,27 @@ const CompanyProfileDescription = () => {
         scopeItems={[
           {
             icon: <MdAssignment className="shrink-0 text-3xl text-[#8EBBFF]" />,
-            title: "Proses Pengembangan",
-            description: "Melakukan pengumpulan data, analisis informasi, serta penyusunan struktur laporan yang mencerminkan kinerja dan strategi perusahaan secara menyeluruh.",
+            title: "Proses Pengembangan Company Profile",
+            description: "Melakukan pengumpulan data, eksplorasi brand, serta penyusunan struktur company profile yang mencerminkan identitas dan keunggulan perusahaan.",
           },
           {
-            icon: <MdOutlineVerifiedUser className="shrink-0 text-3xl text-[#8EBBFF]" />,
-            title: "Penyusunan & Penyajian",
-            description: "Mengembangkan konten, narasi, serta desain company profile yang selaras dengan identitas brand dan kebutuhan komunikasi stakeholder.",
+            icon: <FaLightbulb className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            title: "Penyusunan Konten dan Narasi",
+            description: "Mengembangkan isi company profile, termasuk profil perusahaan, layanan, keunggulan, serta value proposition yang disampaikan secara jelas dan persuasif.",
+          },
+          {
+            icon: <FaPalette className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            title: "Desain Visual dan Layout",
+            description: "Merancang tampilan visual yang profesional dan sesuai dengan identitas brand untuk meningkatkan daya tarik dan keterbacaan.",
           },
         ]}
         benefitTitle="Manfaat bagi Perusahaan"
         benefitItems={[
-          "Menyajikan kinerja perusahaan secara jelas dan terpercaya",
-          "Meningkatkan kepercayaan klien dan partner bisnis",
-          "Memastikan pesan brand tersampaikan secara konsisten",
-          "Memperkuat citra dan reputasi perusahaan di pasar",
-          "Mendukung proses presentasi bisnis dan pengembangan relasi",
+          "Meningkatkan kredibilitas dan citra profesional perusahaan",
+          "Memperjelas positioning dan keunggulan bisnis",
+          "Mendukung aktivitas marketing dan sales",
+          "Mempermudah komunikasi dengan client dan stakeholder",
+          "Meningkatkan peluang kerja sama dan ekspansi bisnis",
         ]}
       />
 
