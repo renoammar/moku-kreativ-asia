@@ -56,6 +56,18 @@ function LogoMarquee({
     x.set(next)
   })
 
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === 'touch') {
+      targetSpeed.set(hoverSpeed)
+    }
+  }
+
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === 'touch') {
+      targetSpeed.set(normalSpeed)
+    }
+  }
+
   return (
     <div className={`flex overflow-hidden py-2 ${className}`}>
       <motion.div
@@ -64,6 +76,9 @@ function LogoMarquee({
         className={trackClassName}
         onHoverStart={() => targetSpeed.set(hoverSpeed)}
         onHoverEnd={() => targetSpeed.set(normalSpeed)}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
       >
         {repeatedLogos.map((logo, index) => (
           <div key={`${logo.src}-${index}`} className={itemClassName}>
@@ -80,6 +95,11 @@ function LogoMarquee({
                       filter: 'grayscale(0%)',
                       opacity: 1,
                       transition: { duration: 0.4 },
+                    },
+                    whileTap: {
+                      filter: 'grayscale(0%)',
+                      opacity: 1,
+                      transition: { duration: 0.2 },
                     },
                   }
                 : {})}
