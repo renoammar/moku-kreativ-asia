@@ -13,7 +13,7 @@ function CompanyProfileHero() {
             Company Profile
           </h1>
           <p className='mt-6 text-base text-gray-200 md:text-[20px] max-w-3xl'>
-            Pendekatan komprehensif dalam penyusunan laporan tahunan untuk menyajikan kinerja perusahaan secara jelas dan terstruktur. Kami tidak hanya memastikan keakuratan data, tetapi juga mengemas narasi yang mencerminkan strategi dan pencapaian perusahaan
+            Pendekatan terintegrasi dalam pembuatan company profile yang dirancang untuk memperkuat branding dan meningkatkan kepercayaan audiens. Kami memastikan setiap elemen,mulai dari konten hingga visual,mampu mencerminkan keunikan bisnis dan menarik peluang kolaborasi.
           </p>
           <div className='flex flex-wrap items-center justify-start gap-3'>
             <div className='mt-10'>
