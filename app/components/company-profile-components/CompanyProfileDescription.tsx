@@ -1,8 +1,8 @@
 import { 
   FaBolt, 
-  FaBalanceScale,
+  FaHandshake,
   FaLightbulb,
-  FaAward
+  FaPalette
 } from 'react-icons/fa';
 import { MdOutlineVerifiedUser, MdAssignment } from 'react-icons/md';
 import WhyChooseUsCard from '../UI/WhyChooseUsCard';
@@ -62,7 +62,7 @@ const CompanyProfileDescription = () => {
         <h3 className="text-2xl font-bold text-center mb-10">Bangun Company Profile yang Profesional dan Meyakinkan</h3>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="bg-slate-50 p-8 rounded-2xl text-center border border-slate-100">
-            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaBalanceScale /></div>
+            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaHandshake /></div>
             <h4 className="font-bold text-lg mb-3">Brand Representation yang Kuat</h4>
             <p className="text-sm text-slate-600">Kami memastikan company profile Anda merepresentasikan identitas, nilai, dan positioning perusahaan secara konsisten dan profesional.</p>
           </div>
@@ -72,12 +72,12 @@ const CompanyProfileDescription = () => {
             <p className="text-sm text-slate-600">Kami mengembangkan storytelling yang tidak hanya informatif, tetapi juga mampu menyampaikan keunggulan dan diferensiasi bisnis secara jelas.</p>
           </div>
           <div className="bg-slate-50 p-8 rounded-2xl text-center border border-slate-100">
-            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaAward /></div>
+            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaPalette /></div>
             <h4 className="font-bold text-lg mb-3">Visual yang Profesional & Menarik</h4>
             <p className="text-sm text-slate-600">Desain visual yang modern, clean, dan selaras dengan brand guideline untuk meningkatkan kredibilitas perusahaan di mata audiens.</p>
           </div>
           <div className="bg-slate-50 p-8 rounded-2xl text-center border border-slate-100">
-            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><FaAward /></div>
+            <div className="flex justify-center mb-4 text-3xl text-[#125ff9]"><MdOutlineVerifiedUser /></div>
             <h4 className="font-bold text-lg mb-3">Expertise yang Terpercaya</h4>
             <p className="text-sm text-slate-600">Didukung oleh tim berpengalaman dalam menangani berbagai industri, mulai dari UMKM hingga perusahaan korporasi dan multinasional.</p>
           </div>
@@ -123,12 +123,12 @@ const CompanyProfileDescription = () => {
             description: "Melakukan pengumpulan data, eksplorasi brand, serta penyusunan struktur company profile yang mencerminkan identitas dan keunggulan perusahaan.",
           },
           {
-            icon: <MdOutlineVerifiedUser className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            icon: <FaLightbulb className="shrink-0 text-3xl text-[#8EBBFF]" />,
             title: "Penyusunan Konten dan Narasi",
             description: "Mengembangkan isi company profile, termasuk profil perusahaan, layanan, keunggulan, serta value proposition yang disampaikan secara jelas dan persuasif.",
           },
           {
-            icon: <MdOutlineVerifiedUser className="shrink-0 text-3xl text-[#8EBBFF]" />,
+            icon: <FaPalette className="shrink-0 text-3xl text-[#8EBBFF]" />,
             title: "Desain Visual dan Layout",
             description: "Merancang tampilan visual yang profesional dan sesuai dengan identitas brand untuk meningkatkan daya tarik dan keterbacaan.",
           },
