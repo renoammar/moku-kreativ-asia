@@ -17,7 +17,7 @@ const services: ServiceItem[] = [
     title: 'Sustainability Report (Laporan Keberlanjutan)',
     icon: MdOutlineEco,
     description: 'Layanan penyusunan Laporan Tahunan kami dirancang untuk menghadirkan Annual Report yang terintegrasi, kredibel, dan berstandar internasional, selaras dengan IFRS, PSAK berbasis IFRS, regulasi OJK, serta IFRS Sustainability (S1 dan S2).',
-    imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=1000',
+    imageUrl: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1000',
   },
   {
     id: 'assurance',

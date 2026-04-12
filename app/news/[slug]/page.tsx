@@ -117,18 +117,9 @@ export default async function NewsArticlePage({params}: NewsArticlePageProps) {
           <p className='text-[17px] leading-relaxed text-[#0066b2]'>{post.excerpt}</p>
         </div>
       ) : null}
-
-      <div className='mb-10 min-h-24 w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-xs uppercase tracking-widest text-slate-400'>
-        Advertisement
-      </div>
-
       <article className='prose-lg max-w-none font-sans antialiased'>
         <PortableText value={post.body} components={portableTextComponents} />
       </article>
-
-      <div className='mt-12 min-h-24 w-full rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-xs uppercase tracking-widest text-slate-400'>
-        Advertisement
-      </div>
     </main>
   )
 }
