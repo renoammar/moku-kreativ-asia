@@ -1,8 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
-const youtubeRegex =
-  /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|shorts\/)|youtu\.be\/)[\w-]{6,}/i
-
 export const portfolioType = defineType({
   name: 'portfolio',
   title: 'Portfolio',
@@ -49,7 +46,7 @@ export const portfolioType = defineType({
     }),
     defineField({
       name: 'youtubeUrl',
-      title: 'YouTube',
+      title: 'Video URL',
       type: 'url',
       fieldset: 'media',
       validation: (Rule) =>
@@ -63,13 +60,9 @@ export const portfolioType = defineType({
             return 'Add a YouTube link or upload a cover image.'
           }
 
-          if (value && !youtubeRegex.test(value)) {
-            return 'Only YouTube links are allowed'
-          }
-
           return true
         }),
-      description: 'Paste a YouTube watch, shorts, or youtu.be URL.',
+      description: 'Paste any hosted video URL (YouTube, Cloudinary, or other providers).',
     }),
     defineField({
       name: 'gif',

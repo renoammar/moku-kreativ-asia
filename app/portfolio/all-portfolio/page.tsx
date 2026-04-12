@@ -46,6 +46,56 @@ function formatPortfolioDate(value: string): string {
   })
 }
 
+function getYouTubeThumbnail(url: string): string | null {
+  try {
+    const parsed = new URL(url)
+
+    if (parsed.hostname.includes('youtu.be')) {
+      const id = parsed.pathname.split('/').filter(Boolean)[0]
+      return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null
+    }
+
+    if (parsed.pathname.includes('/shorts/')) {
+      const [, , id] = parsed.pathname.split('/')
+      return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null
+    }
+
+    const watchId = parsed.searchParams.get('v')
+    return watchId ? `https://i.ytimg.com/vi/${watchId}/hqdefault.jpg` : null
+  } catch {
+    return null
+  }
+}
+
+function getCloudinaryThumbnail(url: string): string | null {
+  try {
+    const parsed = new URL(url)
+    if (!parsed.hostname.includes('res.cloudinary.com')) return null
+
+    if (!parsed.pathname.includes('/video/upload/')) return null
+
+    let path = parsed.pathname.replace('/video/upload/', '/video/upload/so_0/')
+    if (/\.(mp4|webm|ogg|mov|m4v)$/i.test(path)) {
+      path = path.replace(/\.(mp4|webm|ogg|mov|m4v)$/i, '.jpg')
+    } else if (!/\.(png|jpg|jpeg|webp)$/i.test(path)) {
+      path = `${path}.jpg`
+    }
+
+    return `${parsed.origin}${path}`
+  } catch {
+    return null
+  }
+}
+
+function getVideoThumbnail(url?: string | null): string | null {
+  if (!url) return null
+
+  const youtube = getYouTubeThumbnail(url)
+  if (youtube) return youtube
+
+  return getCloudinaryThumbnail(url)
+}
+
 export default function AllPortfolioPage() {
   const [videos, setVideos] = useState<PortfolioVideo[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -113,9 +163,9 @@ export default function AllPortfolioPage() {
               className='group block w-96 flex-none transition-all duration-300 hover:-translate-y-1'
             >
               <div className='relative aspect-video w-96 overflow-hidden rounded-3xl rounded-br-[48px] shadow-sm'>
-                {video.thumbnailUrl ? (
+                {video.thumbnailUrl || getVideoThumbnail(video.youtubeUrl) ? (
                   <img
-                    src={video.thumbnailUrl}
+                    src={video.thumbnailUrl || getVideoThumbnail(video.youtubeUrl) || ''}
                     alt={video.thumbnailAlt || video.title}
                     width={384}
                     height={216}

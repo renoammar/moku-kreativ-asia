@@ -36,6 +36,11 @@ export async function generateMetadata({params}: PortfolioDetailPageProps): Prom
   }
 }
 
+type VideoEmbed = {
+  kind: 'youtube' | 'iframe' | 'video'
+  src: string
+}
+
 function getYouTubeEmbedUrl(url: string): string | null {
   try {
     const parsed = new URL(url)
@@ -57,6 +62,25 @@ function getYouTubeEmbedUrl(url: string): string | null {
   }
 }
 
+function getVideoEmbed(url?: string | null): VideoEmbed | null {
+  if (!url) return null
+
+  const youtubeEmbed = getYouTubeEmbedUrl(url)
+  if (youtubeEmbed) {
+    return {kind: 'youtube', src: youtubeEmbed}
+  }
+
+  try {
+    const parsed = new URL(url)
+    const pathname = parsed.pathname.toLowerCase()
+    const isDirectFile = /\.(mp4|webm|ogg|mov|m4v)$/.test(pathname)
+
+    return {kind: isDirectFile ? 'video' : 'iframe', src: url}
+  } catch {
+    return null
+  }
+}
+
 export default async function PortfolioDetailPage({params}: PortfolioDetailPageProps) {
   const {slug} = await params
   const portfolio = await getPortfolioBySlug(slug)
@@ -65,7 +89,7 @@ export default async function PortfolioDetailPage({params}: PortfolioDetailPageP
     notFound()
   }
 
-  const embedUrl = getYouTubeEmbedUrl(portfolio.youtubeUrl)
+  const videoEmbed = getVideoEmbed(portfolio.youtubeUrl)
 
   return (
     <main className='mx-auto mt-16 w-full max-w-5xl px-6 pb-20 pt-16 md:px-12'>
@@ -80,7 +104,7 @@ export default async function PortfolioDetailPage({params}: PortfolioDetailPageP
         <h1 className='text-[32px] font-bold leading-tight text-[#0066b2] md:text-[56px]'>{portfolio.title}</h1>
       </header>
 
-      {!embedUrl && portfolio.mainImage?.url ? (
+      {!videoEmbed && portfolio.mainImage?.url ? (
         <figure className='mb-10'>
           <img
             src={portfolio.mainImage.url}
@@ -90,7 +114,7 @@ export default async function PortfolioDetailPage({params}: PortfolioDetailPageP
         </figure>
       ) : null}
 
-      {embedUrl ? (
+      {videoEmbed ? (
         <section className='mb-12'>
           <div className='mb-4 inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1.5 text-sm font-semibold text-slate-700'>
             <FiPlayCircle className='h-4 w-4' aria-hidden='true' />
@@ -98,14 +122,21 @@ export default async function PortfolioDetailPage({params}: PortfolioDetailPageP
           </div>
           <div className='overflow-hidden rounded-3xl border border-slate-200 shadow-sm'>
             <div className='relative aspect-video'>
-              <iframe
-                src={`${embedUrl}?rel=0`}
-                title={portfolio.title}
-                className='h-full w-full'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                referrerPolicy='strict-origin-when-cross-origin'
-                allowFullScreen
-              />
+              {videoEmbed.kind === 'video' ? (
+                <video className='h-full w-full' controls preload='metadata'>
+                  <source src={videoEmbed.src} />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <iframe
+                  src={videoEmbed.kind === 'youtube' ? `${videoEmbed.src}?rel=0` : videoEmbed.src}
+                  title={portfolio.title}
+                  className='h-full w-full'
+                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                  referrerPolicy='strict-origin-when-cross-origin'
+                  allowFullScreen
+                />
+              )}
             </div>
           </div>
         </section>

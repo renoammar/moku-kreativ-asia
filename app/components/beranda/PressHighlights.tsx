@@ -94,6 +94,10 @@ function PressHighlights() {
     }
   }, [])
 
+  if (!isLoading && (hasError || posts.length === 0)) {
+    return null
+  }
+
   return (
     <section className=' px-4 py-14 md:px-8 md:py-20' id='press-highlight'>
       <div className='mx-auto w-full max-w-6xl'>
@@ -119,8 +123,6 @@ function PressHighlights() {
                 readMoreLabel='Read more'
               />
             ))
-          ) : hasError || posts.length === 0 ? (
-            <p className='text-slate-500 md:col-span-3'>No news highlights available right now.</p>
           ) : (
             posts.map((post) => (
               <PressHighlightCard

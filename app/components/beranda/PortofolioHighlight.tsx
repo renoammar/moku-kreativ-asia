@@ -13,6 +13,56 @@ function getPortfolioHref(video: PortfolioVideo): string {
   return '/portfolio'
 }
 
+function getYouTubeThumbnail(url: string): string | null {
+  try {
+    const parsed = new URL(url)
+
+    if (parsed.hostname.includes('youtu.be')) {
+      const id = parsed.pathname.split('/').filter(Boolean)[0]
+      return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null
+    }
+
+    if (parsed.pathname.includes('/shorts/')) {
+      const [, , id] = parsed.pathname.split('/')
+      return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null
+    }
+
+    const watchId = parsed.searchParams.get('v')
+    return watchId ? `https://i.ytimg.com/vi/${watchId}/hqdefault.jpg` : null
+  } catch {
+    return null
+  }
+}
+
+function getCloudinaryThumbnail(url: string): string | null {
+  try {
+    const parsed = new URL(url)
+    if (!parsed.hostname.includes('res.cloudinary.com')) return null
+
+    if (!parsed.pathname.includes('/video/upload/')) return null
+
+    let path = parsed.pathname.replace('/video/upload/', '/video/upload/so_0/')
+    if (/\.(mp4|webm|ogg|mov|m4v)$/i.test(path)) {
+      path = path.replace(/\.(mp4|webm|ogg|mov|m4v)$/i, '.jpg')
+    } else if (!/\.(png|jpg|jpeg|webp)$/i.test(path)) {
+      path = `${path}.jpg`
+    }
+
+    return `${parsed.origin}${path}`
+  } catch {
+    return null
+  }
+}
+
+function getVideoThumbnail(url?: string | null): string | null {
+  if (!url) return null
+
+  const youtube = getYouTubeThumbnail(url)
+  if (youtube) return youtube
+
+  return getCloudinaryThumbnail(url)
+}
+
 const refreshIntervalMs = 60_000
 const cacheKey = 'mka:portfolioHighlights'
 const cacheTtlMs = 5 * 60_000
@@ -132,7 +182,7 @@ function PortofolioHighlightPage() {
                 title={video.title}
                 titleHref={getPortfolioHref(video)}
                 readMoreLabel='View project'
-                imageSrc={video.thumbnailUrl}
+                imageSrc={video.thumbnailUrl || getVideoThumbnail(video.youtubeUrl) || undefined}
                 imageAlt={video.thumbnailAlt || video.title}
               />
             ))

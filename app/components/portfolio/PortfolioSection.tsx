@@ -21,6 +21,56 @@ function formatPortfolioDate(value: string): string {
   })
 }
 
+function getYouTubeThumbnail(url: string): string | null {
+  try {
+    const parsed = new URL(url)
+
+    if (parsed.hostname.includes('youtu.be')) {
+      const id = parsed.pathname.split('/').filter(Boolean)[0]
+      return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null
+    }
+
+    if (parsed.pathname.includes('/shorts/')) {
+      const [, , id] = parsed.pathname.split('/')
+      return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null
+    }
+
+    const watchId = parsed.searchParams.get('v')
+    return watchId ? `https://i.ytimg.com/vi/${watchId}/hqdefault.jpg` : null
+  } catch {
+    return null
+  }
+}
+
+function getCloudinaryThumbnail(url: string): string | null {
+  try {
+    const parsed = new URL(url)
+    if (!parsed.hostname.includes('res.cloudinary.com')) return null
+
+    if (!parsed.pathname.includes('/video/upload/')) return null
+
+    let path = parsed.pathname.replace('/video/upload/', '/video/upload/so_0/')
+    if (/\.(mp4|webm|ogg|mov|m4v)$/i.test(path)) {
+      path = path.replace(/\.(mp4|webm|ogg|mov|m4v)$/i, '.jpg')
+    } else if (!/\.(png|jpg|jpeg|webp)$/i.test(path)) {
+      path = `${path}.jpg`
+    }
+
+    return `${parsed.origin}${path}`
+  } catch {
+    return null
+  }
+}
+
+function getVideoThumbnail(url?: string | null): string | null {
+  if (!url) return null
+
+  const youtube = getYouTubeThumbnail(url)
+  if (youtube) return youtube
+
+  return getCloudinaryThumbnail(url)
+}
+
 function getPortfolioHref(video: PortfolioVideo): string {
   if (video.slug) return `/portfolio/${video.slug}`
   return video.youtubeUrl || '#'
@@ -55,7 +105,7 @@ export default function PortfolioSection({ embedded = false, className = '' }: P
   }, [])
 
   const featuredVideo = videos[0]
-  const topStories = videos.slice(1, 4)
+  const topStories = videos.slice(1, 3)
   const wrapperClasses = embedded
     ? `relative mx-auto w-full max-w-7xl px-6 pb-20 pt-10 ${className}`
     : `relative mx-auto mt-16 min-h-screen w-full max-w-7xl px-6 pb-20 pt-20 ${className}`
@@ -87,9 +137,9 @@ export default function PortfolioSection({ embedded = false, className = '' }: P
             {featuredVideo && (
               <Link href={getPortfolioHref(featuredVideo)} className='group block lg:col-span-2'>
                 <div className='relative aspect-video overflow-hidden rounded-3xl rounded-br-[68px] shadow-sm'>
-                  {featuredVideo.thumbnailUrl ? (
+                  {featuredVideo.thumbnailUrl || getVideoThumbnail(featuredVideo.youtubeUrl) ? (
                     <img
-                      src={featuredVideo.thumbnailUrl}
+                      src={featuredVideo.thumbnailUrl || getVideoThumbnail(featuredVideo.youtubeUrl) || ''}
                       alt={featuredVideo.thumbnailAlt || featuredVideo.title}
                       className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
                       loading='eager'
@@ -120,9 +170,9 @@ export default function PortfolioSection({ embedded = false, className = '' }: P
               {topStories.map((video) => (
                 <Link key={video._id} href={getPortfolioHref(video)} className='group block'>
                   <div className='relative aspect-16/10 overflow-hidden rounded-[30px] rounded-br-[68px] shadow-sm'>
-                    {video.thumbnailUrl ? (
+                    {video.thumbnailUrl || getVideoThumbnail(video.youtubeUrl) ? (
                       <img
-                        src={video.thumbnailUrl}
+                        src={video.thumbnailUrl || getVideoThumbnail(video.youtubeUrl) || ''}
                         alt={video.thumbnailAlt || video.title}
                         className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
                         loading='lazy'
