@@ -95,7 +95,26 @@ function PressHighlights() {
   }, [])
 
   if (!isLoading && (hasError || posts.length === 0)) {
-    return null
+    return (
+      <section className='px-4 py-14 md:px-8 md:py-20' id='press-highlight'>
+        <div className='mx-auto w-full max-w-6xl'>
+          <div className='flex flex-col gap-4 md:flex-row md:items-center md:justify-between'>
+            <h2 className='text-4xl font-semibold text-[#123A66] md:text-[46px]'>Press</h2>
+            <Link
+              href='/news'
+              className='inline-flex w-fit items-center gap-2 rounded-full bg-sky-100 px-6 py-3 text-xl font-medium text-sky-500 transition-colors duration-300 hover:bg-sky-200 md:text-2xl'
+            >
+              See all news
+              <HiArrowRight aria-hidden='true' className='text-2xl' />
+            </Link>
+          </div>
+          <div className='mt-8 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-10 text-center text-slate-600'>
+            <p className='text-lg font-medium text-[#123A66]'>Press updates are coming soon.</p>
+            <p className='mt-2 text-sm'>Stay tuned for the latest stories and announcements.</p>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (
