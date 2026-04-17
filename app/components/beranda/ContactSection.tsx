@@ -85,7 +85,7 @@ function ContactSection() {
 					</div>
 
 					<form
-						action='https://formspree.io/f/mbdppqkq'
+						action='https://formspree.io/f/mojydaaaz'
 						method='POST'
 						className='space-y-4 rounded-3xl bg-white/10 p-4 backdrop-blur-[2px] md:p-5'
 					>
