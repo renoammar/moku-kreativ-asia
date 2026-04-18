@@ -1,23 +1,64 @@
 'use client'
 import { AnimatePresence, motion } from 'motion/react'
-import { useState } from 'react'
+import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
 
 function Navbar() {
   const navItems = [
-    { label: 'BERANDA' },
+    { label: 'BERANDA', href: '/' },
+    // { label: 'NEWSROOM', href: '/news' },
+    // { label: 'PORTFOLIO', href: '/portfolio' },
     {
       label: 'REPORTING SOLUTION',
-      children: ['All Reporting Solutions', 'Annual Report', 'Sustainability Report', 'Assurance', 'Company Profile'],
+      children: [
+        { label: 'All Reporting Solutions', href: '/all-reporting-solutions' },
+        { label: 'Annual Report', href: '/annual-report' },
+        { label: 'Sustainability Report', href: '/sustainability-report' },
+        { label: 'Assurance', href: '/assurance' },
+        { label: 'Company Profile', href: '/company-profile' },
+      ],
     },
-    { label: 'EVENT SOLUTION' },
-    { label: '3D DESIGN' },
-    { label: 'CONTACT' },
+    { label: 'EVENT SOLUTION', href: '/event' },
+    // { label: '3D DESIGN', href: '#' },
+    { label: 'CONTACT', href: '/contact' },
+    // {label:"moku studio",href:"/studio-moku-asia"}
   ]
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isReportingOpen, setIsReportingOpen] = useState(false)
   const [isMobileReportingOpen, setIsMobileReportingOpen] = useState(false)
   const [isMobileClosing, setIsMobileClosing] = useState(false)
+  const desktopReportingRef = useRef<HTMLLIElement>(null)
+
+  useEffect(() => {
+    if (!isReportingOpen) {
+      return
+    }
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null
+
+      if (desktopReportingRef.current && target && !desktopReportingRef.current.contains(target)) {
+        setIsReportingOpen(false)
+      }
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsReportingOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handlePointerDown)
+    document.addEventListener('touchstart', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown)
+      document.removeEventListener('touchstart', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isReportingOpen])
 
   const toggleMobileMenu = () => {
     setIsMenuOpen((prev) => {
@@ -34,14 +75,21 @@ function Navbar() {
 
   return (
     <div
-      className={`fixed top-4 left-1/2 z-50 w-[80%] -translate-x-1/2 overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen || isMobileClosing ? 'rounded-4xl' : 'rounded-full'}`}
+      id='site-navbar'
+      className={`fixed top-4 inset-x-0 z-50 mx-auto w-[92%] max-w-6xl overflow-hidden md:overflow-visible bg-[rgba(255,255,255,0.92)] backdrop-blur-3xl ${isMenuOpen || isMobileClosing ? 'rounded-4xl' : 'rounded-full'}`}
     >
       <div className='h-16 px-6 flex items-center justify-between'>
-        <img src="/images/moku_icon.png" alt="Moku Kreativ Asia" className='h-17.5 w-17.5' />
+        <Link href='/' aria-label='Go to homepage'>
+          <img src='/images/moku_icon.png' alt='Moku Kreativ Asia' className='h-17.5 w-17.5' />
+        </Link>
 
         <ul className='hidden md:flex items-center gap-8 text-slate-700 text-sm font-medium tracking-wide'>
           {navItems.map((item) => (
-            <li key={item.label} className='relative cursor-pointer'>
+            <li
+              key={item.label}
+              ref={item.children ? desktopReportingRef : undefined}
+              className='relative cursor-pointer'
+            >
               {item.children ? (
                 <>
                   <button
@@ -68,10 +116,12 @@ function Navbar() {
                         <ul className='text-slate-700'>
                           {item.children.map((child, index) => (
                             <li
-                              key={child}
+                              key={child.label}
                               className={`px-3 py-2 text-base ${index !== item.children.length - 1 ? 'border-b border-sky-100' : ''}`}
                             >
-                              {child}
+                              <Link href={child.href} className='block text-slate-700 transition-colors duration-200 hover:text-sky-600'>
+                                {child.label}
+                              </Link>
                             </li>
                           ))}
                         </ul>
@@ -80,7 +130,9 @@ function Navbar() {
                   </AnimatePresence>
                 </>
               ) : (
-                item.label
+                <Link href={item.href ?? '#'} className='transition-colors duration-200 hover:text-sky-600'>
+                  {item.label}
+                </Link>
               )}
             </li>
           ))}
@@ -124,12 +176,12 @@ function Navbar() {
                 <button
                   type='button'
                   onClick={() => setIsMobileReportingOpen((prev) => !prev)}
-                  className='w-full py-4 flex items-center justify-between text-4xl'
+                  className='flex w-full items-center justify-between py-3 text-2xl font-medium tracking-wide'
                   aria-expanded={isMobileReportingOpen}
                   aria-controls='mobile-reporting-submenu'
                 >
                   <span>{item.label.charAt(0) + item.label.slice(1).toLowerCase()}</span>
-                  <span className='text-sky-500 text-2xl leading-none'>{isMobileReportingOpen ? '−' : '+'}</span>
+                  <span className='text-sky-500 text-xl leading-none'>{isMobileReportingOpen ? '−' : '+'}</span>
                 </button>
 
                 <motion.ul
@@ -144,14 +196,18 @@ function Navbar() {
                   className='overflow-hidden pl-4'
                 >
                   {item.children.map((child) => (
-                    <li key={child} className='py-2 text-xl text-slate-600'>
-                      {child}
+                    <li key={child.label} className='py-2 text-base text-slate-600'>
+                      <Link href={child.href} className='block transition-colors duration-200 hover:text-sky-600'>
+                        {child.label}
+                      </Link>
                     </li>
                   ))}
                 </motion.ul>
               </>
             ) : (
-              <div className='py-4 text-4xl'>{item.label.charAt(0) + item.label.slice(1).toLowerCase()}</div>
+              <Link href={item.href ?? '#'} className='block py-3 text-2xl font-medium tracking-wide'>
+                {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
+              </Link>
             )}
           </li>
         ))}
