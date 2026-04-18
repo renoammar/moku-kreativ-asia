@@ -57,12 +57,15 @@ function formatPublishedAt(value: string): string {
 async function getPostBySlug(slug: string): Promise<NewsPost | null> {
   return client.fetch<NewsPost | null>(newsroomPostBySlugQuery, {slug})
 }
-
+export const dynamicParams = false 
 export async function generateStaticParams(): Promise<Array<{slug: string}>> {
-  const slugs = await client.fetch<Array<{slug: string}>>(newsroomPostSlugsQuery)
-  return slugs
+  try {
+    const slugs = await client.fetch<Array<{slug: string}>>(newsroomPostSlugsQuery)
+    return slugs ?? []
+  } catch {
+    return []
+  }
 }
-
 export async function generateMetadata({params}: NewsArticlePageProps): Promise<Metadata> {
   const {slug} = params
   const post = await getPostBySlug(slug)
