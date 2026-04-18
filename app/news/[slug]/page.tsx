@@ -9,7 +9,7 @@ import {newsroomPostBySlugQuery, newsroomPostSlugsQuery} from '@/sanity/lib/quer
 import type {NewsPost} from '@/sanity/lib/types'
 
 type NewsArticlePageProps = {
-  params: {slug: string}
+  params: Promise<{slug: string}>
 }
 
 const portableTextComponents: Partial<PortableTextReactComponents> = {
@@ -67,7 +67,7 @@ export async function generateStaticParams(): Promise<Array<{slug: string}>> {
   }
 }
 export async function generateMetadata({params}: NewsArticlePageProps): Promise<Metadata> {
-  const {slug} = params
+  const {slug} = await params
   const post = await getPostBySlug(slug)
 
   if (!post) {
@@ -83,7 +83,7 @@ export async function generateMetadata({params}: NewsArticlePageProps): Promise<
 }
 
 export default async function NewsArticlePage({params}: NewsArticlePageProps) {
-  const {slug} = params
+  const {slug} = await params
   const post = await getPostBySlug(slug)
 
   if (!post) {
