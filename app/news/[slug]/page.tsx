@@ -57,7 +57,7 @@ function formatPublishedAt(value: string): string {
 async function getPostBySlug(slug: string): Promise<NewsPost | null> {
   return client.fetch<NewsPost | null>(newsroomPostBySlugQuery, {slug})
 }
-export const dynamicParams = false 
+export const dynamicParams = true; 
 export async function generateStaticParams(): Promise<Array<{slug: string}>> {
   try {
     const slugs = await client.fetch<Array<{slug: string}>>(newsroomPostSlugsQuery)
