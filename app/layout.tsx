@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "cpI-faP04KBY9M9KNSi7wbmyeZPJZSeK1YB7o250BYI",
+  },
   icons: {
     icon: "/images/moku_icon.png",
     shortcut: "/images/moku_icon.png",
